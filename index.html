@@ -77,6 +77,11 @@
             font-weight: 500;
             font-size: 0.95em;
             text-align: left;
+            white-space: normal;
+            word-wrap: break-word;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
         }
 
         .nav-tab:hover {
@@ -164,6 +169,7 @@
             border-left: 4px solid #d97706;
             padding-left: 50px;
             padding-top: 20px;
+            padding-right: 15px;
         }
 
         .page-block:last-child {
@@ -721,6 +727,178 @@
             .lecture-diagram svg {
                 width: 100%;
                 height: auto;
+            }
+        }
+
+        /* Landscape Mode Optimization */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .layout-wrapper {
+                flex-direction: row;
+            }
+
+            .sidebar {
+                width: 40%;
+                height: 100vh;
+                overflow-y: auto;
+                padding: 0;
+            }
+
+            .sidebar-header {
+                padding: 10px 15px;
+            }
+
+            .sidebar-header h1 {
+                font-size: 1em;
+            }
+
+            .nav-tabs {
+                flex-direction: column;
+                gap: 5px;
+                padding: 10px;
+            }
+
+            .nav-tab {
+                padding: 8px 12px;
+                font-size: 0.8em;
+            }
+
+            .main-content {
+                width: 60%;
+                margin-left: 0;
+            }
+
+            .header {
+                padding: 10px 15px;
+            }
+
+            .header h1 {
+                font-size: 1.1em;
+            }
+
+            .content-wrapper {
+                padding: 15px;
+            }
+
+            .lecture-content {
+                padding: 15px;
+            }
+
+            .page-title {
+                font-size: 1.05em;
+            }
+
+            .page-text {
+                font-size: 0.85em;
+            }
+
+            .page-block {
+                margin-bottom: 15px;
+            }
+
+            .explanation {
+                padding: 10px;
+                font-size: 0.8em;
+            }
+
+            .question-card {
+                padding: 12px;
+            }
+
+            .question-text {
+                font-size: 0.9em;
+            }
+
+            .option {
+                padding: 8px 10px;
+                font-size: 0.85em;
+            }
+
+            .lecture-diagram {
+                padding: 10px;
+                margin: 10px 0;
+            }
+
+            .diagram-title {
+                font-size: 0.9em;
+            }
+
+            .lecture-diagram svg {
+                max-height: 300px;
+                width: 100%;
+                height: auto;
+            }
+
+            .stats-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .stat-item {
+                padding: 10px;
+            }
+
+            .stat-number {
+                font-size: 1.4em;
+            }
+
+            .stat-label {
+                font-size: 0.8em;
+            }
+
+            .table-wrapper {
+                font-size: 0.8em;
+            }
+
+            td, th {
+                padding: 6px;
+            }
+        }
+
+        /* Extra small portrait phones */
+        @media (max-width: 360px) {
+            .sidebar-header h1 {
+                font-size: 1em;
+            }
+
+            .nav-tab {
+                padding: 6px 10px;
+                font-size: 0.8em;
+            }
+
+            .header h1 {
+                font-size: 1.1em;
+            }
+
+            .content-wrapper {
+                padding: 12px;
+            }
+
+            .lecture-content {
+                padding: 12px;
+            }
+
+            .page-title {
+                font-size: 1em;
+            }
+
+            .page-text {
+                font-size: 0.85em;
+            }
+
+            .question-card {
+                padding: 12px;
+            }
+
+            .lecture-diagram {
+                padding: 8px;
+            }
+
+            .diagram-title {
+                font-size: 0.9em;
+            }
+
+            .stats-content {
+                grid-template-columns: 1fr;
             }
         }
 
