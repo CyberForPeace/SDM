@@ -1,0 +1,2985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Modeling - Complete Review & Quiz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a1a;
+            min-height: 100vh;
+            display: flex;
+            color: #ffffff;
+        }
+
+        /* Main Layout */
+        .layout-wrapper {
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(180deg, #000000 0%, #1a1a1a 100%);
+            color: white;
+            padding: 30px 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            box-shadow: 4px 0 15px rgba(217, 119, 6, 0.3);
+            z-index: 1000;
+            border-right: 2px solid #d97706;
+        }
+
+        .sidebar-header {
+            padding: 0 20px 30px;
+            border-bottom: 2px solid #d97706;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-header h1 {
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #fbbf24;
+        }
+
+        .sidebar-header p {
+            font-size: 0.85em;
+            opacity: 0.8;
+        }
+
+        .nav-tabs {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 0 12px;
+        }
+
+        .nav-tab {
+            padding: 12px 16px;
+            background: rgba(217, 119, 6, 0.1);
+            color: #ffffff;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            font-size: 0.95em;
+            text-align: left;
+        }
+
+        .nav-tab:hover {
+            background: rgba(217, 119, 6, 0.3);
+            border-color: #d97706;
+            transform: translateX(5px);
+        }
+
+        .nav-tab.active {
+            background: #d97706;
+            color: #ffffff;
+            border-color: #fbbf24;
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.5);
+        }
+
+        /* Main Content Area */
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header & Navigation */
+        .header {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            color: white;
+            padding: 30px 40px;
+            box-shadow: 0 2px 10px rgba(217, 119, 6, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid #d97706;
+        }
+
+        .header h1 {
+            text-align: center;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #fbbf24;
+        }
+
+        /* Content Container */
+        .content-wrapper {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            background: #1a1a1a;
+        }
+
+        /* Lecture Content */
+        .lecture-section {
+            display: none;
+            background: #2a2a2a;
+            border-radius: 12px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+            border: 1px solid #d97706;
+            overflow: hidden;
+            animation: slideIn 0.3s ease;
+        }
+
+        .lecture-section.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .lecture-content {
+            padding: 40px;
+            background: #2a2a2a;
+            color: #e5e5e5;
+        }
+
+        .page-block {
+            margin-bottom: 35px;
+            border-left: 4px solid #d97706;
+            padding-left: 50px;
+            padding-top: 20px;
+        }
+
+        .page-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .page-title {
+            font-size: 1.6em;
+            color: #fbbf24;
+            margin-bottom: 15px;
+            margin-top: 10px;
+            font-weight: 700;
+        }
+
+        .page-text {
+            color: #e5e5e5;
+            line-height: 1.8;
+            font-size: 1em;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin-bottom: 15px;
+        }
+
+        .page-text strong {
+            color: #fbbf24;
+            font-weight: 600;
+        }
+
+        .explanation {
+            background: linear-gradient(135deg, rgba(217, 119, 6, 0.15) 0%, rgba(251, 191, 36, 0.1) 100%);
+            color: #fbbf24;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #d97706;
+            border: 2px solid #d97706;
+        }
+
+        .explanation h4 {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            color: #fbbf24;
+            font-weight: 700;
+        }
+
+        .explanation-text {
+            line-height: 1.7;
+        }
+
+        /* Tables */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #2a2a2a;
+            box-shadow: 0 2px 8px rgba(217, 119, 6, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #d97706;
+        }
+
+        th {
+            background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+            color: #ffffff;
+            padding: 14px;
+            text-align: left;
+            font-weight: 700;
+        }
+
+        td {
+            padding: 12px 14px;
+            border-bottom: 1px solid #3a3a3a;
+            color: #e5e5e5;
+        }
+
+        tr:hover {
+            background: rgba(217, 119, 6, 0.1);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Quiz Section */
+        #quiz-section {
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+
+        #quiz-section.active {
+            display: block;
+        }
+
+        .quiz-header {
+            background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+            color: #ffffff;
+            padding: 35px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.4);
+        }
+
+        .quiz-header h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .quiz-header p {
+            font-size: 1.05em;
+            opacity: 0.9;
+        }
+
+        .quiz-controls {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            background: #2a2a2a;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+            border: 1px solid #d97706;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            color: #fbbf24;
+            white-space: nowrap;
+        }
+
+        .filter-group select {
+            padding: 8px 12px;
+            border: 2px solid #d97706;
+            border-radius: 6px;
+            background: #1a1a1a;
+            color: #ffffff;
+            font-size: 0.95em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .filter-group select:hover {
+            border-color: #fbbf24;
+            box-shadow: 0 2px 8px rgba(217, 119, 6, 0.4);
+        }
+
+        .filter-group button {
+            padding: 8px 20px;
+            background: #d97706;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .filter-group button:hover {
+            background: #f59e0b;
+            transform: translateY(-1px);
+        }
+
+        .quiz-questions {
+            display: grid;
+            gap: 20px;
+        }
+
+        .question-card {
+            background: #2a2a2a;
+            border: 2px solid #3a3a3a;
+            border-radius: 10px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            display: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        }
+
+        .question-card.show {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        .question-card:hover {
+            border-color: #d97706;
+            box-shadow: 0 4px 16px rgba(217, 119, 6, 0.3);
+        }
+
+        .question-card.answered {
+            background: rgba(217, 119, 6, 0.1);
+            border-color: #d97706;
+        }
+
+        .question-card.locked .option {
+            pointer-events: none;
+            cursor: not-allowed;
+        }
+
+        .question-number {
+            background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+            color: #ffffff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .question-text {
+            font-size: 1.15em;
+            color: #fbbf24;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .option {
+            padding: 14px 16px;
+            background: #1a1a1a;
+            border: 2px solid #3a3a3a;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            color: #e5e5e5;
+        }
+
+        .option:hover:not(.locked *) {
+            background: rgba(217, 119, 6, 0.15);
+            border-color: #d97706;
+        }
+
+        .option input[type="radio"] {
+            margin-right: 12px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            accent-color: #d97706;
+        }
+
+        .option.correct {
+            background: rgba(34, 197, 94, 0.2);
+            border-color: #22c55e;
+        }
+
+        .option.correct input[type="radio"] {
+            accent-color: #22c55e;
+        }
+
+        .option.incorrect {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: #ef4444;
+        }
+
+        .option.incorrect input[type="radio"] {
+            accent-color: #ef4444;
+        }
+
+        .option.selected {
+            background: rgba(217, 119, 6, 0.3);
+            border-color: #d97706;
+        }
+
+        .feedback {
+            margin-top: 18px;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 500;
+            display: none;
+            border-left: 4px solid;
+            line-height: 1.6;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: rgba(34, 197, 94, 0.15);
+            color: #86efac;
+            border-color: #22c55e;
+        }
+
+        .feedback.incorrect {
+            background: rgba(239, 68, 68, 0.15);
+            color: #fca5a5;
+            border-color: #ef4444;
+        }
+
+        /* Quiz Stats */
+        .quiz-stats {
+            background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+            color: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 30px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.4);
+        }
+
+        .quiz-stats h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .stats-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.2);
+            padding: 18px;
+            border-radius: 8px;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .stat-item div:last-child {
+            font-size: 0.95em;
+            opacity: 0.95;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .layout-wrapper {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 15px 0;
+            }
+
+            .sidebar-header {
+                padding: 0 15px 15px;
+            }
+
+            .nav-tabs {
+                flex-direction: row;
+                overflow-x: auto;
+                padding: 0 15px;
+                gap: 10px;
+            }
+
+            .nav-tab {
+                flex-shrink: 0;
+                padding: 10px 14px;
+                font-size: 0.9em;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .header {
+                padding: 15px 20px;
+            }
+
+            .header h1 {
+                font-size: 1.4em;
+            }
+
+            .content-wrapper {
+                padding: 20px;
+            }
+
+            .lecture-content {
+                padding: 20px;
+            }
+
+            .page-block {
+                margin-bottom: 25px;
+            }
+
+            .page-title {
+                font-size: 1.3em;
+            }
+
+            .page-text {
+                font-size: 0.95em;
+            }
+
+            .explanation {
+                padding: 15px;
+            }
+
+            .table-wrapper {
+                font-size: 0.9em;
+                margin: 15px 0;
+            }
+
+            td, th {
+                padding: 10px;
+            }
+
+            .quiz-controls {
+                flex-direction: column;
+            }
+
+            .filter-group {
+                width: 100%;
+                flex-wrap: wrap;
+            }
+
+            .filter-group select,
+            .filter-group button {
+                flex: 1;
+                min-width: 120px;
+            }
+
+            .quiz-questions {
+                gap: 15px;
+            }
+
+            .question-card {
+                padding: 18px;
+            }
+
+            .question-text {
+                font-size: 1em;
+            }
+
+            .option {
+                padding: 12px 14px;
+                font-size: 0.95em;
+            }
+
+            .option input[type="radio"] {
+                width: 16px;
+                height: 16px;
+                margin-right: 10px;
+            }
+
+            .stats-content {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+
+            .stat-number {
+                font-size: 1.8em;
+            }
+
+            /* Diagram responsiveness for mobile */
+            .lecture-diagram {
+                padding: 15px;
+                overflow-x: auto;
+            }
+
+            .lecture-diagram svg {
+                min-width: 100%;
+            }
+
+            .diagram-title {
+                font-size: 1em;
+                margin-bottom: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar-header h1 {
+                font-size: 1.2em;
+            }
+
+            .nav-tab {
+                padding: 8px 12px;
+                font-size: 0.85em;
+            }
+
+            .header h1 {
+                font-size: 1.2em;
+            }
+
+            .content-wrapper {
+                padding: 15px;
+            }
+
+            .lecture-content {
+                padding: 15px;
+            }
+
+            .page-title {
+                font-size: 1.1em;
+            }
+
+            .page-text {
+                font-size: 0.9em;
+                line-height: 1.6;
+            }
+
+            .question-card {
+                padding: 15px;
+            }
+
+            .question-number {
+                width: 36px;
+                height: 36px;
+                font-size: 0.95em;
+            }
+
+            .quiz-header {
+                padding: 20px;
+            }
+
+            .quiz-header h2 {
+                font-size: 1.4em;
+            }
+
+            .stats-content {
+                grid-template-columns: 1fr;
+            }
+
+            /* Ultra-mobile responsive diagrams */
+            .lecture-diagram {
+                padding: 10px;
+                margin: 15px 0;
+            }
+
+            .diagram-title {
+                font-size: 0.95em;
+            }
+
+            .lecture-diagram svg {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        /* Utility Classes */
+        .highlight {
+            background: rgba(217, 119, 6, 0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #fbbf24;
+            font-weight: 600;
+        }
+
+        .code-block {
+            background: #1a1a1a;
+            border-left: 4px solid #d97706;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            border: 1px solid #3a3a3a;
+        }
+
+        .code-block code {
+            color: #fbbf24;
+            font-size: 0.95em;
+        }
+
+        /* Icon Styling */
+        i.fas {
+            margin-right: 8px;
+            font-size: 1.1em;
+        }
+
+        h1 i.fas,
+        h2 i.fas {
+            margin-right: 12px;
+            font-size: 1.2em;
+        }
+
+        h4 i.fas {
+            margin-right: 8px;
+            color: #fbbf24;
+        }
+
+        .nav-tab i.fas {
+            margin-right: 8px;
+            font-size: 1em;
+        }
+
+        /* Diagram Styling */
+        .lecture-diagram {
+            background: #2a2a2a;
+            border: 2px solid #d97706;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(217, 119, 6, 0.2);
+        }
+
+        .lecture-diagram svg {
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        .diagram-title {
+            font-weight: 600;
+            color: #fbbf24;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .back-to-top {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+            color: #ffffff;
+            padding: 12px 18px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 99;
+            transition: all 0.3s ease;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3em;
+            box-shadow: 0 4px 10px rgba(217, 119, 6, 0.4);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(217, 119, 6, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h1><i class="fas fa-book"></i> System Modeling</h1>
+                <p>Complete Review & Quiz</p>
+            </div>
+            <div class="nav-tabs" id="lectureNavTabs">
+                <!-- Generated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <h1><i class="fas fa-book"></i> System Modeling - Complete Review & Quiz</h1>
+            </div>
+
+            <!-- Content Area -->
+            <div class="content-wrapper">
+                <!-- Lecture Sections -->
+                <div id="lectureContainer">
+                    <!-- Generated by JavaScript -->
+                </div>
+
+                <!-- Quiz Section -->
+                <section id="quiz-section">
+                    <div class="quiz-header">
+                        <h2><i class="fas fa-bullseye"></i> Interactive Quiz</h2>
+                        <p>Test your knowledge on System Modeling concepts</p>
+                    </div>
+
+                    <div class="quiz-controls">
+                        <div class="filter-group">
+                            <label for="lectureFilter">Filter by Lecture:</label>
+                            <select id="lectureFilter">
+                                <option value="all">All Lectures</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <button onclick="resetQuiz()">Reset Quiz</button>
+                        </div>
+                    </div>
+
+                    <div class="quiz-questions" id="quizContainer">
+                        <!-- Generated by JavaScript -->
+                    </div>
+
+                    <div class="quiz-stats" id="quizStats">
+                        <h3>Quiz Statistics</h3>
+                        <div class="stats-content">
+                            <div class="stat-item">
+                                <div class="stat-number" id="totalAnswered">0</div>
+                                <div>Answered</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" id="correctCount">0</div>
+                                <div>Correct</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" id="scorePercentage">0%</div>
+                                <div>Score</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <div class="back-to-top" id="backToTop" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></div>
+
+    <script>
+        // Lecture Data
+        const lectureData = {
+            "Summarize All": {
+                pages: [
+                    {
+                        title: "Complete Topic Schedule",
+                        content: "Quick Reference Guide for All System Modeling Concepts\n\n1. BEHAVIORAL MODELS - Understand system dynamics\n   • Focus: How the system responds to stimuli\n   • Types: Data-driven, Event-driven\n   • Tools: Activity diagrams, State diagrams\n   • When: Real-time systems, workflow analysis\n\n2. CONTEXT MODELS - Define system scope\n   • Focus: What's inside vs outside the system\n   • Elements: System boundary, External systems\n   • Tools: Context diagrams, Process models\n   • When: Project planning, requirements gathering\n\n3. STRUCTURAL MODELS - Design system architecture\n   • Focus: Components and relationships\n   • Types: Static (blueprint), Dynamic (operation)\n   • Tools: Class diagrams, Generalization hierarchies\n   • When: System design, implementation planning\n\n4. INTERACTION MODELS - Define user & system communication\n   • Focus: Who talks to whom and what they say\n   • Levels: User-System, System-System, Component-Component\n   • Tools: Use case diagrams, Sequence diagrams\n   • When: Requirements analysis, validation\n\n5. OOP PRINCIPLES - Build quality software\n   • Four Core: Abstraction, Encapsulation, Decomposition, Generalization\n   • Purpose: Manage complexity, reduce duplication\n   • Application: All object-oriented systems\n   • When: Class design, inheritance planning",
+                        explanation: "This schedule provides a bird's-eye view of all topics. Use it as a quick reference guide during your studies. Each section answers key questions: What is it? How is it used? When should I use it?"
+                    },
+                    {
+                        title: "Decision Tree: Which Model Do I Need?",
+                        content: "Choose the right modeling approach based on your question:\n\nStart with: 'What am I trying to understand?'\n\n→ 'Where does my system fit?' → USE: Context Model\n   Answers: What's inside/outside? What are the boundaries?\n\n→ 'What will users do?' → USE: Interaction Model\n   Answers: Who interacts with the system? What are the workflows?\n\n→ 'How should I structure my code?' → USE: Structural Model\n   Answers: What classes exist? How do they relate?\n\n→ 'How will the system behave?' → USE: Behavioral Model\n   Answers: What happens when triggered? What are the states?",
+                        explanation: "Think of this as a diagnostic tool. Different problems require different models. You might use multiple models for a single system project - start with Context, then add Interaction, then add Structural and Behavioral as needed."
+                    },
+                    {
+                        title: "Quick Decision Guide",
+                        content: "Use this checklist to know what's needed when:\n\nEARLY STAGE (Requirements):\n✓ Context Model - Define scope and boundaries\n✓ Use Case Diagrams - Show user interactions\n✓ Process Models - Explain workflows\n\nDESIGN STAGE:\n✓ Class Diagrams - Plan the structure\n✓ Sequence Diagrams - Detail the interactions\n✓ State Diagrams - Define behavior for complex objects\n\nIMPLEMENTATION STAGE:\n✓ Use diagrams as reference during coding\n✓ Keep documentation synchronized with code\n✓ Validate that implementation matches models\n\nTESTING & MAINTENANCE:\n✓ Use models to understand expected behavior\n✓ Create test cases based on workflows\n✓ Update models when requirements change",
+                        explanation: "This is a practical roadmap. Following this sequence ensures you don't miss important steps and creates a complete paper trail from requirements to implementation."
+                    }
+                ]
+            },
+            "Behavioral Model": {
+                pages: [
+                    {
+                        title: "Introduction to Behavioral Models",
+                        content: "Behavioral models are models of the dynamic behavior of a system as it is executing. They show what happens or what is supposed to happen when a system responds to a stimulus from its environment.",
+                        explanation: "Think of behavioral models like watching a person's reactions to different situations. Just as a person reacts differently to different stimuli (like being happy when receiving good news), a system responds to different inputs and events. Behavioral models help us understand and predict how our software will behave in real-world scenarios."
+                    },
+                    {
+                        title: "Types of Stimuli",
+                        content: "You can think of these stimuli as being of two types:\n• Data: Some data arrives that has to be processed by the system.\n• Events: Some event happens that triggers system processing. Events may have associated data, although this is not always the case.",
+                        explanation: "A stimuli is anything that triggers the system to do something. For example, in a banking system, data could be a transaction amount being entered, while an event could be a user clicking the 'Transfer' button. Both cause the system to behave in specific ways."
+                    },
+                    {
+                        title: "Data-Driven Modeling",
+                        content: "Many business systems are data-processing systems that are primarily driven by data. They are controlled by the data input to the system, with relatively little external event processing.\nData-driven models show the sequence of actions involved in processing input data and generating an associated output.\nThey are particularly useful during the analysis of requirements as they can be used to show end-to-end processing in a system.",
+                        explanation: "Data-driven systems are like factories - they take raw materials (input data), process them through various stages, and produce finished products (output). A payroll system is a good example: it takes employee hours worked as input, processes them through various calculations, and produces a paycheck as output."
+                    },
+                    {
+                        title: "Event-Driven Systems",
+                        content: "Real-time systems are often event-driven, with minimal data processing. For example, a landline phone switching system responds to events such as 'receiver off hook' by generating a dial tone.\nEvent-driven modeling shows how a system responds to external and internal events.\nIt is based on the assumption that a system has a finite number of states and that events (stimuli) may cause a transition from one state to another.",
+                        explanation: "Event-driven systems react immediately to specific events, like how a traffic light changes based on sensor inputs or time intervals. A microwave oven is another good example - it responds to events like 'button pressed' or 'timer completed' by changing its state and behavior."
+                    },
+                    {
+                        title: "State Machine Models",
+                        content: "These model the behaviour of the system in response to external and internal events.\nThey show the system's responses to stimuli so are often used for modelling real-time systems.\nState machine models show system states as nodes and events as arcs between these nodes. When an event occurs, the system moves from one state to another.\nStatecharts are an integral part of the UML and are used to represent state machine models.",
+                        explanation: "A state machine is like a decision tree, but instead of making decisions, it defines different operational modes (states) the system can be in. For a traffic light: states are Red, Yellow, Green. Events are timer triggers that cause transitions between states. This helps us visualize exactly when and how the system changes its behavior."
+                    }
+                ]
+            },
+            "Context models": {
+                pages: [
+                    {
+                        title: "What are Context Models?",
+                        content: "Context models are used to illustrate the operational context of a system - they show what lies outside the system boundaries.\nSocial and organisational concerns may affect the decision on where to position system boundaries.\nArchitectural models show the system and its relationship with other systems.",
+                        explanation: "Context models answer the question: 'Where does my system fit in the bigger picture?' Imagine your system is a heart - a context model shows it's connected to lungs, brain, and other organs. It defines what's inside your system and what's outside, and how they interact."
+                    },
+                    {
+                        title: "System Boundaries",
+                        content: "System boundaries are established to define what is inside and what is outside the system.\nThey show other systems that are used or depend on the system being developed.\nThe position of the system boundary has a profound effect on the system requirements.\nDefining a system boundary is a political judgment.\nThere may be pressures to develop system boundaries that increase/decrease the influence or workload of different parts of an organization.",
+                        explanation: "Drawing system boundaries is crucial because it determines the scope of your project. If you include too much, the project becomes huge and complex. If you exclude necessary functions, the system won't work properly. It's like deciding whether a restaurant should handle its own food delivery or partner with existing delivery services."
+                    },
+                    {
+                        title: "Process Perspective",
+                        content: "Context models simply show the other systems in the environment, not how the system being developed is used in that environment.\nProcess models reveal how the system being developed is used in broader business processes.\nUML activity diagrams may be used to define business process models.",
+                        explanation: "While context models show 'what systems exist', process models show 'how they work together'. It's the difference between knowing a doctor and a hospital exist vs. understanding the entire patient care workflow from appointment to discharge."
+                    }
+                ]
+            },
+            "Core-Principals-of-Object-Oriented-Design": {
+                pages: [
+                    {
+                        title: "The Four Core Principles",
+                        content: "Understanding object-oriented modeling begins with mastering four key design principles:\n1. Abstraction – Focuses on essential attributes and behaviors, hiding unnecessary detail.\n2. Encapsulation – Bundles data and behavior together and restricts direct access to internals.\n3. Decomposition – Breaks complex systems into smaller, manageable parts with clear responsibilities.\n4. Generalization – Identifies shared structure or behavior across classes and centralizes it to reduce duplication.",
+                        explanation: "These four principles are the foundation of good object-oriented design. They work together like a team: Abstraction decides what's important, Encapsulation protects it, Decomposition organizes it, and Generalization eliminates repetition. Master these and you'll write maintainable, professional code."
+                    },
+                    {
+                        title: "Abstraction",
+                        content: "Abstraction is the idea of simplifying a concept in the problem domain to its essentials within some context. It allows you to better understand a concept by breaking it down into a simplified description that ignores unimportant details.\nHelps manage complexity by focusing on only what matters for a specific purpose.\nEliminates unnecessary attributes or behaviors from the design.\nIn object-oriented modeling, abstraction is realized through classes.\nDifferent contexts lead to different abstractions of the same concept.",
+                        explanation: "Abstraction is about filtering - keeping the important parts and ignoring the noise. A student abstraction in an academic system would include 'courses enrolled' and 'grades', but not 'favorite pizza topping'. Context matters: a student's abstraction in a driving license system would include 'age' and 'address', but not 'GPA'."
+                    },
+                    {
+                        title: "Encapsulation - Bundling and Hiding",
+                        content: "Encapsulation is a core object-oriented design principle.\nIt bundles related data (attributes) and behaviors (methods) into a single, self-contained unit: the object.\nEncapsulation forms a self-contained object by bundling the data and functions it requires to work, exposes an interface whereby other objects can access and use it, and restricts access to certain inside details.\nThree aspects: Bundling (group related data and behavior), Interface (expose selected methods), Hiding (keep details private).",
+                        explanation: "Think of a car's engine: you don't need to know how every component works internally - you just press the accelerator (interface) and it goes faster. Encapsulation protects the engine's complexity while providing a simple interface. Similarly, your code should hide complex implementation details behind simple, easy-to-use methods."
+                    },
+                    {
+                        title: "Decomposition - Breaking Down Complexity",
+                        content: "Decomposition breaks down a whole into meaningful, manageable parts.\nThis design principle supports problem solving by simplifying complexity.\nEach part can have its own responsibility, separate from the rest.\nA car is composed of transmission, motor, wheels, seats, etc.\nEach part contributes to the overall goal with clear responsibilities.",
+                        explanation: "Decomposition prevents overwhelm. Instead of building a car all at once, you build the engine, transmission, wheels, interior separately, then assemble them. In software, instead of one giant program, you create multiple classes, each handling one responsibility. This makes code easier to understand, test, and fix."
+                    },
+                    {
+                        title: "Generalization - Reducing Duplication",
+                        content: "Generalization is a design principle for reducing redundancy in code.\nIt helps identify and extract common patterns from multiple places.\nAllows us to define shared behavior and structure once, and reuse it in many places.\nShared attributes and behaviors among classes can be factored into a common superclass.\nExamples: Animal (superclass) with Dog, Cat (subclasses) inheriting common features like walk(), run(), eat().",
+                        explanation: "Don't repeat yourself! If Dog and Cat both have bark() and meow() methods that do similar things, create a shared method in an Animal class. This saves code, reduces bugs, and makes updates easier. If you need to fix a bug in the common code, you fix it once and all subclasses benefit."
+                    }
+                ]
+            },
+            "Interaction models": {
+                pages: [
+                    {
+                        title: "What are Interaction Models?",
+                        content: "Modeling user interaction is important as it helps to identify user requirements.\nModeling system-to-system interaction highlights the communication problems that may arise.\nModeling component interaction helps us understand if a proposed system structure is likely to deliver the required system performance and dependability.\nUse case diagrams and sequence diagrams may be used for interaction modeling.",
+                        explanation: "Interaction models are like conversation scripts - they show who talks to whom and what they say. They help you understand: How users interact with your system? How does your system talk to other systems? Do these conversations flow smoothly or is there confusion? These insights shape your requirements."
+                    },
+                    {
+                        title: "Use Case Modeling",
+                        content: "Use cases were developed originally to support requirements elicitation and now incorporated into the UML.\nEach use case represents a discrete task that involves external interaction with a system.\nActors in a use case may be people or other systems.\nRepresented diagramatically to provide an overview of the use case and in a more detailed textual form.",
+                        explanation: "A use case is a user story in visual form. It shows one specific task: 'Transfer money', 'Register a patient', 'Submit an assignment'. Use cases help you think from the user's perspective and ensure your system actually does what users need."
+                    },
+                    {
+                        title: "Sequence Diagrams",
+                        content: "Sequence diagrams are part of the UML and are used to model the interactions between the actors and the objects within a system.\nA sequence diagram shows the sequence of interactions that take place during a particular use case or use case instance.\nThe objects and actors involved are listed along the top of the diagram, with a dotted line drawn vertically from these.\nInteractions between objects are indicated by annotated arrows.",
+                        explanation: "Sequence diagrams are like a choreography for your system - they show exactly which objects talk to which other objects, in what order. Time flows from top to bottom. This helps you ensure all objects are coordinating properly and that no communication gets missed."
+                    }
+                ]
+            },
+            "Structural": {
+                pages: [
+                    {
+                        title: "What are Structural Models?",
+                        content: "Structural models of software display the organization of a system in terms of the components that make up that system and their relationships.\nStructural models may be static models, which show the structure of the system design, or dynamic models, which show the organization of the system when it is executing.\nYou create structural models of a system when you are discussing and designing the system architecture.",
+                        explanation: "Structural models are like blueprints for buildings - they show what components exist and how they fit together. Static models show the final structure (like a blueprint). Dynamic models show how structures change during operation (like showing how a building functions when occupied)."
+                    },
+                    {
+                        title: "Class Diagrams",
+                        content: "Class diagrams are used when developing an object-oriented system model to show the classes in a system and the associations between these classes.\nAn object class can be thought of as a general definition of one kind of system object.\nAn association is a link between classes that indicates that there is some relationship between these classes.\nWhen you are developing models during the early stages, objects represent something in the real world, such as a patient, a prescription, doctor, etc.",
+                        explanation: "Class diagrams show the structure of your object-oriented system. Each box is a class (like Student, Course), and the lines show relationships (like 'a student enrolls in a course'). This helps you design your system before coding and communicate the design to others."
+                    },
+                    {
+                        title: "Generalization Hierarchies",
+                        content: "Generalization is an everyday technique that we use to manage complexity.\nRather than learn the detailed characteristics of every entity, we place these entities in more general classes (animals, cars, houses, etc.) and learn the characteristics of these classes.\nThis allows us to infer that different members of these classes have some common characteristics (e.g. squirrels and rats are rodents).\nIn generalization, the attributes and operations associated with higher-level classes are also associated with the lower-level classes.\nThe lower-level classes inherit the attributes and operations from their superclasses.",
+                        explanation: "Generalization hierarchies organize classes from general to specific. For example: Animal (general) → Mammal (more specific) → Dog (very specific). Each level inherits properties from above and adds its own specific properties. This mirrors how we naturally organize knowledge."
+                    },
+                    {
+                        title: "Object Class Aggregation",
+                        content: "An aggregation model shows how classes that are collections are composed of other classes.\nAggregation models are similar to the part-of relationship in semantic data models.\nAggregation represents a 'whole-part' relationship, where parts can exist independently of the whole.",
+                        explanation: "Aggregation shows composition - like how a car is composed of wheels, engine, doors. Unlike inheritance (where Truck IS-A Vehicle), aggregation means Car HAS-A Engine. The parts can often exist separately and be reused in different wholes."
+                    }
+                ]
+            },
+            "System Modelling01": {
+                pages: [
+                    {
+                        title: "What is System Modeling?",
+                        content: "System modeling is the process of developing abstract models of a system, with each model presenting a different view or perspective of that system.\nSystem modeling has now come to mean representing a system using some kind of graphical notation, which is now almost always based on notations in the Unified Modeling Language (UML).\nSystem modelling helps the analyst to understand the functionality of the system and models are used to communicate with customers.",
+                        explanation: "System modeling is like creating multiple maps of a city - one showing streets, one showing water systems, one showing power lines. Each model shows different aspects. UML provides standard symbols and formats so everyone understands the diagrams the same way."
+                    },
+                    {
+                        title: "Models for Different Purposes",
+                        content: "Models of the existing system are used during requirements engineering. They help clarify what the existing system does and can be used as a basis for discussing its strengths and weaknesses. These then lead to requirements for the new system.\nModels of the new system are used during requirements engineering to help explain the proposed requirements to other system stakeholders. Engineers use these models to discuss design proposals and to document the system for implementation.\nIn a model-driven engineering process, it is possible to generate a complete or partial system implementation from the system model.",
+                        explanation: "You create models at different stages: first, understand the old system to find problems. Then design the new system using models. Modern tools can even generate code from models, which saves time and reduces errors."
+                    },
+                    {
+                        title: "System Perspectives",
+                        content: "An external perspective, where you model the context or environment of the system.\nAn interaction perspective, where you model the interactions between a system and its environment, or between the components of a system.\nA structural perspective, where you model the organization of a system or the structure of the data that is processed by the system.\nA behavioral perspective, where you model the dynamic behavior of the system and how it responds to events.",
+                        explanation: "These four perspectives are like viewing a movie from different angles: External (where's the scene?), Interaction (who's talking to whom?), Structural (what are they made of?), Behavioral (what happens over time?). Together they give a complete picture."
+                    },
+                    {
+                        title: "UML Diagram Types",
+                        content: "Activity diagrams: show the activities involved in a process or in data processing.\nUse case diagrams: show the interactions between a system and its environment.\nSequence diagrams: show interactions between actors and the system and between system components.\nClass diagrams: show the object classes in the system and the associations between these classes.\nState diagrams: show how the system reacts to internal and external events.",
+                        explanation: "These five diagram types are your toolkit for system modeling. Choose the right tool for the job: Use Case for 'what users do', Sequence for 'who talks to whom', Class for 'system structure', Activity for 'workflows', State for 'system reactions'."
+                    }
+                ]
+            },
+            "Use cases": {
+                pages: [
+                    {
+                        title: "Use Cases in Mentcare System",
+                        content: "Part 1: Use Cases provide an overview of the core receptionist workflows and the data exchanged with the Mentcare system.\n\nUse cases covered:\n1. Transfer data - Movement of data between Mentcare and external health authority database\n2. Register patient - Initial entry of a patient into the system\n3. Unregister patient - Removal or archival of a patient from active system\n4. View patient info - Retrieving existing data for review",
+                        explanation: "The Mentcare system is a mental health patient management system. These use cases show typical workflows a medical receptionist performs daily. Each use case is a specific task with clear inputs, outputs, and actors involved. Understanding these helps us design a system that actually supports real workflows."
+                    },
+                    {
+                        title: "Transfer Data Use Case",
+                        content: "Actors: Medical receptionist, Patient Records System (PRS)\nDescription: A receptionist may transfer data from the Mentcare system to a health authority database. The information transferred may either be updated personal information (address, phone number, etc.) or a summary of the patient's diagnosis and treatment.\nData: Patient's personal information, treatment summary\nStimulus: User command issued by medical receptionist\nResponse: Confirmation that PRS has been updated\nComments: The receptionist must have appropriate security permissions to access the patient information and the PRS.",
+                        explanation: "This workflow shows data integration - how Mentcare connects with other systems. The receptionist is the actor (person doing the work), PRS is another system receiving the data. The use case specifies what data moves, what triggers it, and what confirmation is needed. Security permissions are critical."
+                    },
+                    {
+                        title: "Register Patient Use Case",
+                        content: "Actors: Medical receptionist, Mentcare System\nDescription: The receptionist creates a new digital record for a patient who has not previously been treated within the system.\nData: Full name, date of birth, contact details, and next of kin information.\nStimulus: Receptionist selects 'New Patient' command.\nResponse: A unique patient identifier is generated and the record is saved.\nComments: Verification of identity (e.g., government ID) is typically required before registration.",
+                        explanation: "Every system needs to onboard new users/entities. This use case shows the registration workflow. The system generates a unique ID to track this patient. Identity verification is crucial to prevent duplicate records and ensure data integrity."
+                    },
+                    {
+                        title: "Unregister Patient Use Case",
+                        content: "Actors: Medical receptionist, Mentcare System\nDescription: A patient is removed from the active system roster, typically due to discharge, death, or transfer to another authority.\nData: Patient ID and reason for unregistration.\nStimulus: Receptionist selects 'Unregister' command for a specific record.\nResponse: System confirms record status has been updated to 'Inactive' or 'Archived'.\nComments: Medical records are rarely deleted entirely; they are usually moved to a long-term archive for legal compliance.",
+                        explanation: "This shows important design principle: don't delete data, archive it. Medical records must be kept for legal and audit purposes even if a patient is no longer active. The system tracks the reason for unregistration, which is valuable for analysis and compliance."
+                    },
+                    {
+                        title: "View Patient Info Use Case",
+                        content: "Actors: Medical receptionist, Mentcare System\nDescription: The receptionist retrieves the current medical and personal history of a specific patient.\nData: Patient identifier used to query the database.\nStimulus: User search command using patient ID or name.\nResponse: The requested patient record is displayed on the screen.\nComments: Access logs are usually maintained to track who viewed sensitive patient data.",
+                        explanation: "This is a read-only operation - viewing existing data. The use case emphasizes the importance of access logs for sensitive medical data - you need to know WHO accessed WHAT and WHEN, both for security and legal compliance. Search by ID or name provides flexibility."
+                    }
+                ]
+            },
+            "samples": {
+                pages: [
+                    {
+                        title: "Sample 1: Internship Matching Portal",
+                        content: "Scenario: Your department wants a portal where companies post internship openings and students apply.\nCoordinators need to approve postings, track applications, and export lists for reporting. Students want to filter by city, domain, and required skills.\n\nKey Actors:\n- Student: searches, applies, uploads CV\n- Company HR: creates posts, reviews applicants\n- Department Coordinator: approves/rejects posts, manages workflow\n\nKey Workflows:\n1. Company posts internship (sent for approval)\n2. Coordinator reviews and approves\n3. Post appears in public listing\n4. Students search/filter and apply\n5. Companies review applications\n6. Coordinator exports data for reports",
+                        explanation: "This is a practical example combining several concepts: Use cases (post, apply, approve), data management (filtering, searching), access control (roles), and workflows. Building this portal requires context models (showing external systems), interaction models (user workflows), and structural models (database design)."
+                    },
+                    {
+                        title: "Sample 2: Clinic Appointment Scheduling",
+                        content: "Scenario: A clinic receives too many calls. Patients should book appointments online, choose a doctor, and receive reminders. Receptionists should approve reschedules and handle cancellations.\n\nKey Actors:\n- Patient: books, reschedules, cancels\n- Receptionist: manages approvals\n- Doctor: views schedule\n\nKey Features:\n1. Online booking (avoid phone calls)\n2. Doctor/time slot selection\n3. Automatic confirmation\n4. Reminders (24h and 2h before)\n5. Reschedule/cancel workflows\n6. Prevention of double-booking\n7. Access control (no patient data leakage)",
+                        explanation: "This example shows real-time system design. The main challenge is preventing double-booking under concurrent requests. Behavioral models (state machine) would show appointment states: Pending → Confirmed → Completed/Cancelled. This system needs careful synchronization and database constraints."
+                    },
+                    {
+                        title: "Sample 3: Lab Equipment Booking",
+                        content: "Scenario: Labs have limited equipment (oscilloscopes, microcontroller kits). Students want to reserve equipment for time slots. Technicians want to track working/out-of-order units and prevent bookings for broken items.\n\nKey Actors:\n- Student: reserves equipment\n- Lab Technician: tracks inventory, marks broken items\n- Admin: generates usage reports\n\nKey Challenges:\n1. Inventory-aware bookings (don't book broken equipment)\n2. Check-out/check-in process\n3. Overdue item tracking\n4. Usage statistics\n5. Maintenance workflows",
+                        explanation: "This example shows how inventory status drives availability. The structural model would have Equipment (general type) and EquipmentUnit (specific items with serial numbers). Behavioral models show state transitions: Available → Reserved → CheckedOut → Returned. This requires real-time inventory synchronization."
+                    },
+                    {
+                        title: "Sample 4: Event Registration with QR Check-in",
+                        content: "Scenario: Your university hosts seminars. People register online, get a QR code, and staff scan it at entrance to check attendance. Organizers want attendance stats.\n\nKey Actors:\n- Attendee: registers online\n- Staff: scans QR codes\n- Organizer: views statistics\n\nKey Features:\n1. Online registration with validation\n2. QR code generation (unique token)\n3. Email delivery (retries included)\n4. QR scanning at check-in\n5. Prevent double check-in\n6. Offline mode support (cache + sync)\n7. Live attendance tracking\n8. Usage statistics export",
+                        explanation: "This example introduces QR technology and offline-first design. Each registration gets a unique, encoded token (not just a sequential number) to prevent simple hacking. Offline mode shows how to build resilient systems that work even without internet. Access logs track who scanned what and when."
+                    }
+                ]
+            }
+        };
+
+        // Quiz Questions
+        const quizQuestions = [
+            // Behavioral Model Questions
+            {
+                lecture: "Behavioral Model",
+                question: "What are the two main types of stimuli that trigger system behavior?",
+                options: [
+                    "User input and system errors",
+                    "Data and Events",
+                    "Commands and responses",
+                    "Requests and acknowledgments"
+                ],
+                correct: 1,
+                explanation: "According to the lecture, stimuli can be data (arriving data that needs processing) or events (triggers for system processing)."
+            },
+            {
+                lecture: "Behavioral Model",
+                question: "Which type of system is primarily driven by data input?",
+                options: [
+                    "Event-driven systems",
+                    "Real-time systems",
+                    "Data-driven systems",
+                    "State-based systems"
+                ],
+                correct: 2,
+                explanation: "Data-driven systems are controlled by the data input to the system, with relatively little external event processing."
+            },
+            {
+                lecture: "Behavioral Model",
+                question: "What do state machine models represent in a system?",
+                options: [
+                    "The sequence of data processing",
+                    "System states as nodes and events as arcs between nodes",
+                    "The external environment",
+                    "User interfaces"
+                ],
+                correct: 1,
+                explanation: "State machine models show system states as nodes and events as arcs between these nodes. When an event occurs, the system moves from one state to another."
+            },
+            {
+                lecture: "Behavioral Model",
+                question: "Which diagram type is part of UML for representing state machine models?",
+                options: [
+                    "Activity diagrams",
+                    "Sequence diagrams",
+                    "Statecharts",
+                    "Class diagrams"
+                ],
+                correct: 2,
+                explanation: "Statecharts are an integral part of the UML and are used to represent state machine models."
+            },
+
+            // Context Models Questions
+            {
+                lecture: "Context models",
+                question: "What do context models primarily show?",
+                options: [
+                    "The internal structure of the system",
+                    "What lies outside the system boundaries",
+                    "The programming language used",
+                    "The database schema"
+                ],
+                correct: 1,
+                explanation: "Context models are used to illustrate the operational context of a system - they show what lies outside the system boundaries."
+            },
+            {
+                lecture: "Context models",
+                question: "Why is defining system boundaries considered a political judgment?",
+                options: [
+                    "Because it requires government approval",
+                    "Because it may be pressured to increase/decrease influence or workload of different organizational parts",
+                    "Because it involves political parties",
+                    "Because the system must serve politicians"
+                ],
+                correct: 1,
+                explanation: "There may be pressures to develop system boundaries that increase or decrease the influence or workload of different parts of an organization."
+            },
+            {
+                lecture: "Context models",
+                question: "What is the main difference between context models and process models?",
+                options: [
+                    "Context models show everything, process models show nothing",
+                    "Context models show other systems; process models show how the system is used in business processes",
+                    "Process models are always better than context models",
+                    "They are exactly the same thing"
+                ],
+                correct: 1,
+                explanation: "Context models simply show the other systems in the environment, while process models reveal how the system being developed is used in broader business processes."
+            },
+
+            // OOP Design Principles Questions
+            {
+                lecture: "Core-Principals-of-Object-Oriented-Design",
+                question: "What does Abstraction focus on?",
+                options: [
+                    "Hiding all data",
+                    "Essential attributes and behaviors, hiding unnecessary detail",
+                    "Creating inheritance hierarchies",
+                    "Breaking systems into parts"
+                ],
+                correct: 1,
+                explanation: "Abstraction focuses on essential attributes and behaviors, hiding unnecessary detail to manage complexity."
+            },
+            {
+                lecture: "Core-Principals-of-Object-Oriented-Design",
+                question: "Which principle bundles data and behavior together and restricts direct access?",
+                options: [
+                    "Abstraction",
+                    "Decomposition",
+                    "Encapsulation",
+                    "Generalization"
+                ],
+                correct: 2,
+                explanation: "Encapsulation bundles data and behavior together into a self-contained unit and restricts direct access to internals."
+            },
+            {
+                lecture: "Core-Principals-of-Object-Oriented-Design",
+                question: "What are the three aspects of Encapsulation?",
+                options: [
+                    "Hiding, Protecting, Securing",
+                    "Bundling, Interface, Hiding",
+                    "Data, Methods, Classes",
+                    "Public, Private, Protected"
+                ],
+                correct: 1,
+                explanation: "The three aspects of Encapsulation are: Bundling (group related data and behavior), Interface (expose selected methods), and Hiding (keep details private)."
+            },
+            {
+                lecture: "Core-Principals-of-Object-Oriented-Design",
+                question: "What is the purpose of Decomposition?",
+                options: [
+                    "To delete parts of the system",
+                    "To break complex systems into smaller, manageable parts with clear responsibilities",
+                    "To compile code faster",
+                    "To merge multiple systems"
+                ],
+                correct: 1,
+                explanation: "Decomposition breaks complex systems into smaller, manageable parts with clear responsibilities, supporting problem solving by simplifying complexity."
+            },
+            {
+                lecture: "Core-Principals-of-Object-Oriented-Design",
+                question: "How does Generalization reduce redundancy?",
+                options: [
+                    "By creating more classes",
+                    "By eliminating all inheritance",
+                    "By identifying shared structure and centralizing it in a superclass",
+                    "By making all classes identical"
+                ],
+                correct: 2,
+                explanation: "Generalization identifies shared structure or behavior across classes and centralizes it in a superclass to reduce duplication."
+            },
+            {
+                lecture: "Core-Principals-of-Object-Oriented-Design",
+                question: "In an abstraction for a 'Student' in an academic system, which would be relevant?",
+                options: [
+                    "Pet ownership",
+                    "Favorite video game",
+                    "Courses enrolled",
+                    "Kitchen cleaning habits"
+                ],
+                correct: 2,
+                explanation: "In the context of an academic system, relevant student attributes include courses enrolled and grades, but not personal hobbies."
+            },
+
+            // Interaction Models Questions
+            {
+                lecture: "Interaction models",
+                question: "Why is modeling user interaction important?",
+                options: [
+                    "To make the system prettier",
+                    "To help identify user requirements",
+                    "To use more colors in the UI",
+                    "To avoid using databases"
+                ],
+                correct: 1,
+                explanation: "Modeling user interaction is important as it helps to identify user requirements and understand how users will interact with the system."
+            },
+            {
+                lecture: "Interaction models",
+                question: "What does a use case represent?",
+                options: [
+                    "A design pattern",
+                    "A database table",
+                    "A discrete task that involves external interaction with a system",
+                    "A programming function"
+                ],
+                correct: 2,
+                explanation: "Each use case represents a discrete task that involves external interaction with a system."
+            },
+            {
+                lecture: "Interaction models",
+                question: "In UML sequence diagrams, what do vertical lines represent?",
+                options: [
+                    "Data flows",
+                    "Time progression",
+                    "Objects/actors involved with time flowing downward",
+                    "System boundaries"
+                ],
+                correct: 2,
+                explanation: "In sequence diagrams, objects and actors involved are listed along the top, with a dotted line drawn vertically from these, representing their interaction over time."
+            },
+
+            // Structural Models Questions
+            {
+                lecture: "Structural",
+                question: "What is the main purpose of class diagrams?",
+                options: [
+                    "To describe classroom layouts",
+                    "To show classes in a system and associations between them",
+                    "To define user interfaces",
+                    "To plan project schedules"
+                ],
+                correct: 1,
+                explanation: "Class diagrams are used when developing an object-oriented system model to show the classes in a system and the associations between these classes."
+            },
+            {
+                lecture: "Structural",
+                question: "What is an association in a class diagram?",
+                options: [
+                    "A type of error",
+                    "A link between classes indicating some relationship",
+                    "A data type",
+                    "A programming language"
+                ],
+                correct: 1,
+                explanation: "An association is a link between classes that indicates that there is some relationship between these classes."
+            },
+            {
+                lecture: "Structural",
+                question: "How is generalization implemented in object-oriented languages like Java?",
+                options: [
+                    "Through configuration files",
+                    "Through class inheritance mechanisms",
+                    "Through database queries",
+                    "Through function pointers"
+                ],
+                correct: 1,
+                explanation: "In object-oriented languages, such as Java, generalization is implemented using the class inheritance mechanisms built into the language."
+            },
+            {
+                lecture: "Structural",
+                question: "What does an aggregation model show?",
+                options: [
+                    "Data aggregation functions",
+                    "How classes that are collections are composed of other classes",
+                    "Compilation of code",
+                    "Network aggregation"
+                ],
+                correct: 1,
+                explanation: "An aggregation model shows how classes that are collections are composed of other classes, showing a 'part-of' relationship."
+            },
+
+            // System Modeling Questions
+            {
+                lecture: "System Modelling01",
+                question: "What is the Unified Modeling Language (UML) used for?",
+                options: [
+                    "Writing database queries",
+                    "Creating graphical notation for system models",
+                    "Compiling code",
+                    "Testing software"
+                ],
+                correct: 1,
+                explanation: "System modeling means representing a system using some kind of graphical notation, which is almost always based on notations in the UML."
+            },
+            {
+                lecture: "System Modelling01",
+                question: "What are the four system perspectives in modeling?",
+                options: [
+                    "Left, right, top, bottom",
+                    "External, Interaction, Structural, Behavioral",
+                    "Input, Output, Process, Storage",
+                    "Software, Hardware, Network, Database"
+                ],
+                correct: 1,
+                explanation: "The four system perspectives are: external (context), interaction (system-environment interactions), structural (organization), and behavioral (dynamic behavior)."
+            },
+            {
+                lecture: "System Modelling01",
+                question: "When is model-driven engineering most useful?",
+                options: [
+                    "When creating simple websites",
+                    "When it is possible to generate complete or partial system implementation from the model",
+                    "When documentation is not needed",
+                    "When working with paper"
+                ],
+                correct: 1,
+                explanation: "In a model-driven engineering process, it is possible to generate a complete or partial system implementation from the system model, saving time and reducing errors."
+            },
+            {
+                lecture: "System Modelling01",
+                question: "Which UML diagram shows system reactions to internal and external events?",
+                options: [
+                    "Use case diagrams",
+                    "Class diagrams",
+                    "Activity diagrams",
+                    "State diagrams"
+                ],
+                correct: 3,
+                explanation: "State diagrams show how the system reacts to internal and external events."
+            },
+
+            // Use Cases Questions
+            {
+                lecture: "Use cases",
+                question: "In the Mentcare Transfer Data use case, who are the actors?",
+                options: [
+                    "Patients and doctors",
+                    "Medical receptionist and patient records system (PRS)",
+                    "Software developers",
+                    "System administrators"
+                ],
+                correct: 1,
+                explanation: "The actors are: Medical receptionist (person performing the action) and patient records system (PRS) (external system receiving data)."
+            },
+            {
+                lecture: "Use cases",
+                question: "What data is used in the Register Patient use case?",
+                options: [
+                    "Only the patient's name",
+                    "Full name, date of birth, contact details, and next of kin information",
+                    "Social media accounts",
+                    "Employment history"
+                ],
+                correct: 1,
+                explanation: "The register patient use case captures: Full name, date of birth, contact details, and next of kin information."
+            },
+            {
+                lecture: "Use cases",
+                question: "Why are medical records archived instead of deleted in the Unregister Patient use case?",
+                options: [
+                    "To save storage space",
+                    "To confuse auditors",
+                    "To comply with legal requirements and maintain audit trails",
+                    "To make the system slower"
+                ],
+                correct: 2,
+                explanation: "Medical records are rarely deleted entirely; they are usually moved to a long-term archive for legal compliance and audit purposes."
+            },
+            {
+                lecture: "Use cases",
+                question: "What is the purpose of access logs in the View Patient Info use case?",
+                options: [
+                    "To speed up the system",
+                    "To track who viewed sensitive patient data, for security and legal compliance",
+                    "To store patient passwords",
+                    "To delete old records"
+                ],
+                correct: 1,
+                explanation: "Access logs are maintained to track who viewed sensitive patient data, which is crucial for security and legal compliance."
+            },
+
+            // Additional comprehensive questions
+            {
+                lecture: "Behavioral Model",
+                question: "What is the key difference between data-driven and event-driven systems?",
+                options: [
+                    "Data-driven systems use databases; event-driven systems don't",
+                    "Data-driven systems are primarily controlled by input data; event-driven systems react to specific events",
+                    "Event-driven systems are always better",
+                    "They are identical concepts with different names"
+                ],
+                correct: 1,
+                explanation: "Data-driven systems are controlled by data input with little external event processing, while event-driven systems respond to specific events with minimal data processing."
+            },
+            {
+                lecture: "Context models",
+                question: "What do architectural models in context modeling demonstrate?",
+                options: [
+                    "The beauty of the code",
+                    "The system and its relationships with other systems",
+                    "The programming patterns used",
+                    "The physical building layout"
+                ],
+                correct: 1,
+                explanation: "Architectural models show the system and its relationship with other systems in the environment."
+            },
+            {
+                lecture: "Core-Principals-of-Object-Oriented-Design",
+                question: "What is the D.R.Y. principle in relation to Generalization?",
+                options: [
+                    "Delete Rapidly and Yield",
+                    "Don't Repeat Yourself - reduce duplication by using shared structures",
+                    "Design Requirements Yearly",
+                    "Develop Rapidly with York"
+                ],
+                correct: 1,
+                explanation: "D.R.Y. (Don't Repeat Yourself) is supported by generalization, which consolidates common code into shared structures to reduce maintenance effort."
+            },
+            {
+                lecture: "Structural",
+                question: "What is inherited by subclasses from superclasses in generalization?",
+                options: [
+                    "Nothing - they are independent",
+                    "Only methods, not attributes",
+                    "Attributes and operations from their superclasses",
+                    "Only the class name"
+                ],
+                correct: 2,
+                explanation: "In a generalization, the attributes and operations associated with higher-level classes are also associated with the lower-level classes through inheritance."
+            },
+            {
+                lecture: "System Modelling01",
+                question: "What is the purpose of models in early design stages?",
+                options: [
+                    "To slow down development",
+                    "To replace implementation",
+                    "To help explain proposed requirements to system stakeholders and discuss design proposals",
+                    "To satisfy auditors only"
+                ],
+                correct: 2,
+                explanation: "Models of the new system are used to help explain the proposed requirements to other system stakeholders and for engineers to discuss design proposals."
+            },
+
+            // Additional Behavioral Model Questions
+            {
+                lecture: "Behavioral Model",
+                question: "In event-driven systems, what triggers state transitions?",
+                options: [
+                    "User preferences",
+                    "System events",
+                    "Database queries",
+                    "Network connections"
+                ],
+                correct: 1,
+                explanation: "In event-driven systems, events (both external and internal) trigger transitions from one state to another."
+            },
+            {
+                lecture: "Behavioral Model",
+                question: "What is a real-time system primarily characterized by?",
+                options: [
+                    "Processing large amounts of data",
+                    "Event-driven behavior with time-critical responses",
+                    "Running on the internet",
+                    "Having a graphical user interface"
+                ],
+                correct: 1,
+                explanation: "Real-time systems are often event-driven with minimal data processing and must respond immediately to events within strict time constraints."
+            },
+            {
+                lecture: "Behavioral Model",
+                question: "How do sequence diagrams represent system behavior over time?",
+                options: [
+                    "As a static picture",
+                    "By showing objects and interactions with time flowing downward",
+                    "Using mathematical equations",
+                    "Through bar charts"
+                ],
+                correct: 1,
+                explanation: "Sequence diagrams show the sequence of interactions between system components with time flowing downward."
+            },
+            {
+                lecture: "Behavioral Model",
+                question: "What is the relationship between stimulus and response in behavioral models?",
+                options: [
+                    "Stimulus causes response",
+                    "Response causes stimulus",
+                    "They are unrelated",
+                    "One is always before the other in time"
+                ],
+                correct: 0,
+                explanation: "Behavioral models show how a system responds to stimuli (triggers) from its environment."
+            },
+
+            // Additional Context Models Questions
+            {
+                lecture: "Context models",
+                question: "What information does an architectural model provide?",
+                options: [
+                    "The color scheme to use",
+                    "The system and other systems it interacts with",
+                    "The programming languages available",
+                    "The number of employees needed"
+                ],
+                correct: 1,
+                explanation: "Architectural models show the system and its relationship with other systems in the operational environment."
+            },
+            {
+                lecture: "Context models",
+                question: "Why are social concerns important when defining system boundaries?",
+                options: [
+                    "To make the system social media compatible",
+                    "Because they may affect organizational influence and workload distribution",
+                    "Because they determine the UI design",
+                    "Because they affect the database design"
+                ],
+                correct: 1,
+                explanation: "Social and organizational concerns may affect the decision on where to position system boundaries due to political and workload considerations."
+            },
+            {
+                lecture: "Context models",
+                question: "What do UML activity diagrams represent in business process modeling?",
+                options: [
+                    "System errors",
+                    "Business processes and activities",
+                    "Database tables",
+                    "User preferences"
+                ],
+                correct: 1,
+                explanation: "UML activity diagrams may be used to define business process models showing how activities relate to each other."
+            },
+            {
+                lecture: "Context models",
+                question: "How does a context model differ from a detailed design model?",
+                options: [
+                    "Context models are more detailed",
+                    "Context models show the system's environment; design models show internal details",
+                    "Context models are used only for databases",
+                    "There is no difference"
+                ],
+                correct: 1,
+                explanation: "Context models show what lies outside system boundaries, while design models focus on internal system structure and behavior."
+            },
+
+            // Additional OOP Design Questions
+            {
+                lecture: "Core-Principals-of-Object-Oriented-Design",
+                question: "What is a limitation of using only abstraction without other principles?",
+                options: [
+                    "The code becomes too simple",
+                    "It might expose too much internal complexity or create overly large classes",
+                    "It makes the system too efficient",
+                    "It eliminates all errors"
+                ],
+                correct: 1,
+                explanation: "While abstraction is powerful, combining it with other principles like encapsulation, decomposition, and generalization creates more robust systems."
+            },
+            {
+                lecture: "Core-Principals-of-Object-Oriented-Design",
+                question: "In what scenario would generalization NOT be beneficial?",
+                options: [
+                    "When classes share common behavior",
+                    "When reducing code duplication is important",
+                    "When classes are completely unrelated with no shared characteristics",
+                    "When following the D.R.Y. principle"
+                ],
+                correct: 2,
+                explanation: "Generalization is useful only when classes share common attributes or behaviors. Forcing generalization on unrelated classes creates poor designs."
+            },
+            {
+                lecture: "Core-Principals-of-Object-Oriented-Design",
+                question: "How does encapsulation improve maintainability?",
+                options: [
+                    "By exposing all internal details",
+                    "By hiding implementation details so changes don't affect other parts",
+                    "By eliminating interfaces",
+                    "By making all data public"
+                ],
+                correct: 1,
+                explanation: "Encapsulation hides internal implementation, allowing changes to be made without affecting other parts of the system that depend on the public interface."
+            },
+            {
+                lecture: "Core-Principals-of-Object-Oriented-Design",
+                question: "What is an example of poor decomposition?",
+                options: [
+                    "Breaking a system into single-responsibility components",
+                    "Creating one massive class that handles everything",
+                    "Using inheritance hierarchies",
+                    "Separating data from behavior"
+                ],
+                correct: 1,
+                explanation: "Poor decomposition creates large, hard-to-maintain components. Good decomposition breaks systems into manageable parts with clear responsibilities."
+            },
+            {
+                lecture: "Core-Principals-of-Object-Oriented-Design",
+                question: "How do the four principles work together?",
+                options: [
+                    "They are independent and never interact",
+                    "Together they create manageable, maintainable systems",
+                    "Only one principle is needed at a time",
+                    "They always conflict with each other"
+                ],
+                correct: 1,
+                explanation: "The four principles complement each other: Abstraction simplifies, Encapsulation protects, Decomposition organizes, and Generalization eliminates duplication."
+            },
+
+            // Additional Structural Questions
+            {
+                lecture: "Structural",
+                question: "What symbols represent different types of relationships in UML class diagrams?",
+                options: [
+                    "Only arrows",
+                    "Solid lines, dashed lines, and different arrow types for associations, inheritance, and dependencies",
+                    "Only colored boxes",
+                    "Text labels only"
+                ],
+                correct: 1,
+                explanation: "UML uses different line styles and arrow types to represent various relationships like association, inheritance, aggregation, and dependency."
+            },
+            {
+                lecture: "Structural",
+                question: "How is multiplicity represented in class diagrams?",
+                options: [
+                    "By the size of the box",
+                    "By numbers at the ends of relationship lines (e.g., 1..*, 0..1)",
+                    "By the color of the line",
+                    "It cannot be represented"
+                ],
+                correct: 1,
+                explanation: "Multiplicity shows how many instances of a class can be related to instances of another class, shown as notation at the ends of associations."
+            },
+            {
+                lecture: "Structural",
+                question: "What is the difference between composition and aggregation?",
+                options: [
+                    "There is no difference",
+                    "Composition is a stronger 'part-of' relationship where the part cannot exist without the whole",
+                    "Aggregation is stronger than composition",
+                    "Composition only applies to databases"
+                ],
+                correct: 1,
+                explanation: "Composition represents a strong ownership relationship where the part's lifecycle depends on the whole, while aggregation is a weaker association."
+            },
+            {
+                lecture: "Structural",
+                question: "In object-oriented design, what does inheritance represent?",
+                options: [
+                    "A database relationship",
+                    "An 'is-a' relationship showing that a subclass is a specialized type of a superclass",
+                    "A network connection",
+                    "A user interface element"
+                ],
+                correct: 1,
+                explanation: "Inheritance represents an 'is-a' relationship where subclasses inherit properties and methods from superclasses."
+            },
+            {
+                lecture: "Structural",
+                question: "How can interface implementation be shown in class diagrams?",
+                options: [
+                    "Using solid lines",
+                    "Using dashed lines with a hollow triangle arrowhead",
+                    "Using filled diamond shapes",
+                    "It cannot be shown"
+                ],
+                correct: 1,
+                explanation: "Interface implementation is shown using a dashed line with a hollow triangle arrowhead, distinguishing it from inheritance."
+            },
+
+            // Additional Interaction Models Questions
+            {
+                lecture: "Interaction models",
+                question: "What is the primary purpose of a sequence diagram?",
+                options: [
+                    "To show static class structures",
+                    "To show the sequence of messages between objects over time",
+                    "To display database schemas",
+                    "To plan project timelines"
+                ],
+                correct: 1,
+                explanation: "Sequence diagrams show the sequence of messages exchanged between objects, representing system interactions over time."
+            },
+            {
+                lecture: "Interaction models",
+                question: "What information should be captured for each use case?",
+                options: [
+                    "Only the name of the use case",
+                    "Actors, preconditions, main flow, alternative flows, and postconditions",
+                    "Only the programming code",
+                    "Only system errors"
+                ],
+                correct: 1,
+                explanation: "Each use case should document actors involved, initial conditions (preconditions), main scenario, alternative scenarios, and final state (postconditions)."
+            },
+            {
+                lecture: "Interaction models",
+                question: "How does a collaboration diagram differ from a sequence diagram?",
+                options: [
+                    "They are identical",
+                    "Collaboration diagrams show relationships spatially; sequence diagrams emphasize temporal order",
+                    "Sequence diagrams show code",
+                    "Collaboration diagrams cannot show messages"
+                ],
+                correct: 1,
+                explanation: "Both show interactions, but collaboration diagrams emphasize the relationships between objects, while sequence diagrams emphasize the order of interactions."
+            },
+            {
+                lecture: "Interaction models",
+                question: "What are scenarios in use case modeling?",
+                options: [
+                    "Possible sequences of interactions that achieve a use case goal",
+                    "Database queries",
+                    "Programming functions",
+                    "Network protocols"
+                ],
+                correct: 0,
+                explanation: "Scenarios are specific sequences of actions and interactions that illustrate how actors and the system interact to accomplish a use case goal."
+            },
+
+            // Additional Use Cases Questions
+            {
+                lecture: "Use cases",
+                question: "What is an actor in use case modeling?",
+                options: [
+                    "A person who acts in a movie",
+                    "An external entity (person or system) that interacts with the system",
+                    "A character in the system",
+                    "A type of software"
+                ],
+                correct: 1,
+                explanation: "An actor is any external entity (human user or external system) that interacts with the system being modeled."
+            },
+            {
+                lecture: "Use cases",
+                question: "Why is it important to identify all actors in a use case diagram?",
+                options: [
+                    "To make the diagram prettier",
+                    "To ensure all system interactions and requirements are captured",
+                    "To use more colors",
+                    "To eliminate actors later"
+                ],
+                correct: 1,
+                explanation: "Identifying all actors ensures that all external interactions and stakeholder requirements are properly captured in the system model."
+            },
+            {
+                lecture: "Use cases",
+                question: "What does a precondition in a use case represent?",
+                options: [
+                    "What happens after the use case",
+                    "The initial state required before the use case can start",
+                    "A type of error",
+                    "A database query"
+                ],
+                correct: 1,
+                explanation: "A precondition is the initial state or condition that must be true before a use case scenario can begin."
+            },
+            {
+                lecture: "Use cases",
+                question: "What is the relationship between use cases and system requirements?",
+                options: [
+                    "Use cases are unrelated to requirements",
+                    "Use cases describe the functional requirements from the user's perspective",
+                    "Use cases are only for databases",
+                    "Requirements come after use cases are coded"
+                ],
+                correct: 1,
+                explanation: "Use cases are a primary tool for eliciting and documenting functional requirements by describing how users will interact with the system."
+            },
+
+            // Additional System Modeling Questions
+            {
+                lecture: "System Modelling01",
+                question: "What is model-driven development?",
+                options: [
+                    "Driving in a model car",
+                    "Using models to understand requirements, then automating code generation from those models",
+                    "Modeling before driving",
+                    "A type of database"
+                ],
+                correct: 1,
+                explanation: "Model-driven development uses system models as primary artifacts, enabling automatic or semi-automatic code generation."
+            },
+            {
+                lecture: "System Modelling01",
+                question: "Which modeling perspective is most important?",
+                options: [
+                    "External perspective",
+                    "Interaction perspective",
+                    "Structural perspective",
+                    "All are important depending on context"
+                ],
+                correct: 3,
+                explanation: "All four perspectives (external, interaction, structural, behavioral) are important and complementary, each providing different insights into the system."
+            },
+            {
+                lecture: "System Modelling01",
+                question: "What is the role of UML in system modeling?",
+                options: [
+                    "To write code faster",
+                    "To provide a standardized notation for creating system models",
+                    "To replace programming",
+                    "To eliminate errors completely"
+                ],
+                correct: 1,
+                explanation: "UML (Unified Modeling Language) provides a standardized graphical notation for creating models from different system perspectives."
+            },
+            {
+                lecture: "System Modelling01",
+                question: "How do iterative models benefit from system modeling?",
+                options: [
+                    "Models add no benefit",
+                    "Models help stakeholders understand requirements before implementation begins",
+                    "Models make iterations slower",
+                    "Models only work with waterfall"
+                ],
+                correct: 1,
+                explanation: "In iterative development, models help validate understanding with stakeholders before each iteration begins, reducing rework."
+            },
+
+            // Space/Architecture Design Questions
+            {
+                lecture: "Structural",
+                question: "What does 'space' refer to in system architecture?",
+                options: [
+                    "Physical buildings",
+                    "The domain or problem space that the system addresses",
+                    "Computer memory",
+                    "Geographic location"
+                ],
+                correct: 1,
+                explanation: "In system design, 'space' refers to the domain or problem space where the system operates and the design space of possible solutions."
+            },
+            {
+                lecture: "Context models",
+                question: "How do you determine the appropriate 'space' for your system?",
+                options: [
+                    "Random selection",
+                    "By analyzing stakeholder needs, organizational structure, and problem domain",
+                    "By copying other systems",
+                    "It doesn't matter"
+                ],
+                correct: 1,
+                explanation: "System boundaries and space are determined through analysis of stakeholder requirements, organizational factors, and the problem domain."
+            },
+            {
+                lecture: "Behavioral Model",
+                question: "In distributed systems, how does space affect design decisions?",
+                options: [
+                    "Space has no effect",
+                    "Systems in different spaces need different communication and timing models",
+                    "All systems are identical regardless of space",
+                    "Space only affects cost"
+                ],
+                correct: 1,
+                explanation: "The 'space' or domain where a system operates affects critical design choices including communication patterns, timing requirements, and concurrency."
+            },
+            {
+                lecture: "Interaction models",
+                question: "What is the 'problem space' in use case modeling?",
+                options: [
+                    "Physical locations",
+                    "The domain of problems the system must solve as described by stakeholders",
+                    "Programming errors",
+                    "A type of database"
+                ],
+                correct: 1,
+                explanation: "The problem space is the domain and context of problems that the system must address, captured through use cases and scenarios."
+            },
+            {
+                lecture: "Core-Principals-of-Object-Oriented-Design",
+                question: "How does abstraction help manage the 'problem space'?",
+                options: [
+                    "It makes problems bigger",
+                    "It simplifies complex problems by focusing on essential aspects",
+                    "It eliminates all problems",
+                    "It has no relationship to problem space"
+                ],
+                correct: 1,
+                explanation: "Abstraction helps manage complexity in the problem space by identifying and focusing on essential aspects while hiding unnecessary details."
+            },
+            {
+                lecture: "Use cases",
+                question: "How do use case diagrams help define the 'solution space'?",
+                options: [
+                    "They define how to code",
+                    "They define what the system must do to solve problems in the problem space",
+                    "They define the database schema",
+                    "They have no relationship to solution space"
+                ],
+                correct: 1,
+                explanation: "Use case diagrams define the solution space by specifying what functionality the system must provide to solve problems identified in the problem space."
+            },
+            {
+                lecture: "Structural",
+                question: "How do class hierarchies represent 'space' in OOP design?",
+                options: [
+                    "They represent physical space",
+                    "They represent the conceptual space of classes and their relationships in the problem domain",
+                    "They represent memory space",
+                    "They have no relationship to space"
+                ],
+                correct: 1,
+                explanation: "Class hierarchies model the conceptual 'space' of the problem domain, showing how different concepts relate to each other."
+            },
+            {
+                lecture: "System Modelling01",
+                question: "What is 'requirements space' in system modeling?",
+                options: [
+                    "Physical locations",
+                    "The set of all possible requirements before design decisions narrow them down",
+                    "A type of database",
+                    "A programming concept"
+                ],
+                correct: 1,
+                explanation: "Requirements space represents all possible requirements before constraints and design decisions reduce them to the actual system to be built."
+            }
+        ];
+
+        // Initialize the page
+        function initializePage() {
+            generateLectureTabs();
+            generateLectureContent();
+            generateQuizFilter();
+            generateQuizQuestions();
+        }
+
+        function generateLectureTabs() {
+            const navContainer = document.getElementById('lectureNavTabs');
+            const tabs = Object.keys(lectureData);
+            
+            tabs.forEach((lecture, index) => {
+                const tab = document.createElement('div');
+                tab.className = 'nav-tab' + (index === 0 ? ' active' : '');
+                tab.textContent = lecture;
+                tab.onclick = () => switchLecture(lecture);
+                navContainer.appendChild(tab);
+            });
+
+            // Quiz Tab
+            const quizTab = document.createElement('div');
+            quizTab.className = 'nav-tab';
+            quizTab.innerHTML = '<i class="fas fa-bullseye"></i> Quiz';
+            quizTab.onclick = () => switchToQuiz();
+            navContainer.appendChild(quizTab);
+        }
+
+        function generateDiagram(lectureName, pageIndex) {
+            const diagramContainer = document.createElement('div');
+            diagramContainer.className = 'lecture-diagram';
+
+            // Summarize All Diagrams
+            if (lectureName === "Summarize All" && pageIndex === 1) {
+                // Decision Tree: Which Model Do I Need?
+                diagramContainer.innerHTML = `
+                    <div class="diagram-title"><i class="fas fa-project-diagram"></i> Decision Tree: Which Model Do I Need?</div>
+                    <svg viewBox="0 0 1000 580" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
+                        <!-- Central Question -->
+                        <rect x="20" y="200" width="180" height="80" fill="#2a2a2a" stroke="#fbbf24" stroke-width="3" rx="10"/>
+                        <text x="110" y="225" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="12">What am I</text>
+                        <text x="110" y="245" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="12">trying to</text>
+                        <text x="110" y="265" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="12">understand?</text>
+                        
+                        <!-- Context Model Branch -->
+                        <path d="M 200 220 L 280 130" stroke="#d97706" stroke-width="2" marker-end="url(#arrow1)"/>
+                        <rect x="280" y="70" width="160" height="100" fill="#2a2a2a" stroke="#d97706" stroke-width="2" rx="8"/>
+                        <text x="360" y="100" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="12">Where does</text>
+                        <text x="360" y="120" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="12">my system fit?</text>
+                        <text x="360" y="160" text-anchor="middle" fill="#e5e5e5" font-size="10" font-style="italic">→ Context Model</text>
+                        
+                        <!-- Interaction Model Branch -->
+                        <path d="M 200 240 L 280 240" stroke="#d97706" stroke-width="2" marker-end="url(#arrow1)"/>
+                        <rect x="280" y="190" width="160" height="100" fill="#2a2a2a" stroke="#d97706" stroke-width="2" rx="8"/>
+                        <text x="360" y="220" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="12">What will</text>
+                        <text x="360" y="240" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="12">users do?</text>
+                        <text x="360" y="280" text-anchor="middle" fill="#e5e5e5" font-size="10" font-style="italic">→ Interaction Model</text>
+                        
+                        <!-- Structural Model Branch -->
+                        <path d="M 200 280 L 280 350" stroke="#d97706" stroke-width="2" marker-end="url(#arrow1)"/>
+                        <rect x="280" y="310" width="160" height="100" fill="#2a2a2a" stroke="#d97706" stroke-width="2" rx="8"/>
+                        <text x="360" y="340" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="12">How should</text>
+                        <text x="360" y="360" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="12">I structure?</text>
+                        <text x="360" y="400" text-anchor="middle" fill="#e5e5e5" font-size="10" font-style="italic">→ Structural Model</text>
+                        
+                        <!-- Behavioral Model Branch -->
+                        <path d="M 200 260 L 280 420" stroke="#d97706" stroke-width="2" marker-end="url(#arrow1)"/>
+                        <rect x="280" y="420" width="160" height="100" fill="#2a2a2a" stroke="#d97706" stroke-width="2" rx="8"/>
+                        <text x="360" y="450" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="12">How will it</text>
+                        <text x="360" y="470" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="12">behave?</text>
+                        <text x="360" y="510" text-anchor="middle" fill="#e5e5e5" font-size="10" font-style="italic">→ Behavioral Model</text>
+                        
+                        <!-- Details for each -->
+                        <!-- Context Details -->
+                        <rect x="550" y="40" width="120" height="70" fill="#1a1a1a" stroke="#d97706" stroke-width="1" rx="5"/>
+                        <text x="610" y="60" text-anchor="middle" fill="#e5e5e5" font-size="9">Boundaries</text>
+                        <text x="610" y="75" text-anchor="middle" fill="#e5e5e5" font-size="9">Scope</text>
+                        <text x="610" y="90" text-anchor="middle" fill="#e5e5e5" font-size="9">External systems</text>
+                        
+                        <!-- Interaction Details -->
+                        <rect x="550" y="180" width="120" height="90" fill="#1a1a1a" stroke="#d97706" stroke-width="1" rx="5"/>
+                        <text x="610" y="200" text-anchor="middle" fill="#e5e5e5" font-size="9">Use cases</text>
+                        <text x="610" y="215" text-anchor="middle" fill="#e5e5e5" font-size="9">Workflows</text>
+                        <text x="610" y="230" text-anchor="middle" fill="#e5e5e5" font-size="9">Sequences</text>
+                        <text x="610" y="245" text-anchor="middle" fill="#e5e5e5" font-size="9">Actors</text>
+                        
+                        <!-- Structural Details -->
+                        <rect x="550" y="310" width="120" height="90" fill="#1a1a1a" stroke="#d97706" stroke-width="1" rx="5"/>
+                        <text x="610" y="330" text-anchor="middle" fill="#e5e5e5" font-size="9">Classes</text>
+                        <text x="610" y="345" text-anchor="middle" fill="#e5e5e5" font-size="9">Relationships</text>
+                        <text x="610" y="360" text-anchor="middle" fill="#e5e5e5" font-size="9">Inheritance</text>
+                        <text x="610" y="375" text-anchor="middle" fill="#e5e5e5" font-size="9">Components</text>
+                        
+                        <!-- Behavioral Details -->
+                        <rect x="550" y="420" width="120" height="90" fill="#1a1a1a" stroke="#d97706" stroke-width="1" rx="5"/>
+                        <text x="610" y="440" text-anchor="middle" fill="#e5e5e5" font-size="9">States</text>
+                        <text x="610" y="455" text-anchor="middle" fill="#e5e5e5" font-size="9">Transitions</text>
+                        <text x="610" y="470" text-anchor="middle" fill="#e5e5e5" font-size="9">Events</text>
+                        <text x="610" y="485" text-anchor="middle" fill="#e5e5e5" font-size="9">Responses</text>
+                        
+                        <!-- Connecting lines -->
+                        <path d="M 440 100 L 550 75" stroke="#666" stroke-width="1" stroke-dasharray="2,2"/>
+                        <path d="M 440 220 L 550 220" stroke="#666" stroke-width="1" stroke-dasharray="2,2"/>
+                        <path d="M 440 360 L 550 355" stroke="#666" stroke-width="1" stroke-dasharray="2,2"/>
+                        <path d="M 440 460 L 550 465" stroke="#666" stroke-width="1" stroke-dasharray="2,2"/>
+                        
+                        <defs>
+                            <marker id="arrow1" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <polygon points="0 0, 10 3, 0 6" fill="#d97706"/>
+                            </marker>
+                        </defs>
+                    </svg>`;
+                return diagramContainer;
+            }
+
+            if (lectureName === "Summarize All" && pageIndex === 2) {
+                // Quick Decision Guide - Timeline
+                diagramContainer.innerHTML = `
+                    <div class="diagram-title"><i class="fas fa-project-diagram"></i> System Development Timeline: When to Use Each Model</div>
+                    <svg viewBox="0 0 1000 400" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
+                        <!-- Timeline -->
+                        <line x1="80" y1="80" x2="920" y2="80" stroke="#d97706" stroke-width="3"/>
+                        
+                        <!-- Stage 1: Requirements -->
+                        <circle cx="150" cy="80" r="15" fill="#d97706"/>
+                        <rect x="80" y="110" width="140" height="120" fill="#2a2a2a" stroke="#d97706" stroke-width="2" rx="8"/>
+                        <text x="150" y="135" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="12">REQUIREMENTS</text>
+                        <text x="150" y="160" text-anchor="middle" fill="#e5e5e5" font-size="9">Context</text>
+                        <text x="150" y="175" text-anchor="middle" fill="#e5e5e5" font-size="9">Use Case</text>
+                        <text x="150" y="190" text-anchor="middle" fill="#e5e5e5" font-size="9">Process</text>
+                        <text x="150" y="210" text-anchor="middle" fill="#e5e5e5" font-size="9">Models</text>
+                        
+                        <!-- Stage 2: Design -->
+                        <circle cx="400" cy="80" r="15" fill="#d97706"/>
+                        <rect x="330" y="110" width="140" height="120" fill="#2a2a2a" stroke="#d97706" stroke-width="2" rx="8"/>
+                        <text x="400" y="135" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="12">DESIGN</text>
+                        <text x="400" y="160" text-anchor="middle" fill="#e5e5e5" font-size="9">Class</text>
+                        <text x="400" y="175" text-anchor="middle" fill="#e5e5e5" font-size="9">Sequence</text>
+                        <text x="400" y="190" text-anchor="middle" fill="#e5e5e5" font-size="9">State</text>
+                        <text x="400" y="210" text-anchor="middle" fill="#e5e5e5" font-size="9">Diagrams</text>
+                        
+                        <!-- Stage 3: Implementation -->
+                        <circle cx="650" cy="80" r="15" fill="#d97706"/>
+                        <rect x="580" y="110" width="140" height="120" fill="#2a2a2a" stroke="#d97706" stroke-width="2" rx="8"/>
+                        <text x="650" y="135" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="12">IMPLEMENTATION</text>
+                        <text x="650" y="160" text-anchor="middle" fill="#e5e5e5" font-size="9">Code from</text>
+                        <text x="650" y="175" text-anchor="middle" fill="#e5e5e5" font-size="9">diagrams</text>
+                        <text x="650" y="190" text-anchor="middle" fill="#e5e5e5" font-size="9">Keep docs</text>
+                        <text x="650" y="210" text-anchor="middle" fill="#e5e5e5" font-size="9">updated</text>
+                        
+                        <!-- Stage 4: Testing -->
+                        <circle cx="850" cy="80" r="15" fill="#d97706"/>
+                        <rect x="780" y="110" width="140" height="120" fill="#2a2a2a" stroke="#d97706" stroke-width="2" rx="8"/>
+                        <text x="850" y="135" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="12">TESTING</text>
+                        <text x="850" y="160" text-anchor="middle" fill="#e5e5e5" font-size="9">Validate</text>
+                        <text x="850" y="175" text-anchor="middle" fill="#e5e5e5" font-size="9">against</text>
+                        <text x="850" y="190" text-anchor="middle" fill="#e5e5e5" font-size="9">behavior</text>
+                        <text x="850" y="210" text-anchor="middle" fill="#e5e5e5" font-size="9">models</text>
+                        
+                        <!-- Details section -->
+                        <rect x="80" y="270" width="860" height="110" fill="#1a1a1a" stroke="#d97706" stroke-width="2" rx="8"/>
+                        <text x="500" y="295" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="13">Key Principle: Models are Communication Tools</text>
+                        <text x="100" y="325" fill="#e5e5e5" font-size="11">• Use models to discuss and agree on design BEFORE coding</text>
+                        <text x="100" y="350" fill="#e5e5e5" font-size="11">• Update models when requirements change - keep documentation in sync with code</text>
+                        <text x="100" y="370" fill="#e5e5e5" font-size="11">• Different models for different audiences: Technical team uses different models than business stakeholders</text>
+                    </svg>`;
+                return diagramContainer;
+            }
+
+            // Behavioral Model Diagrams
+            if (lectureName === "Behavioral Model" && pageIndex === 0) {
+                // Data vs Event Driven Comparison
+                diagramContainer.innerHTML = `
+                    <div class="diagram-title"><i class="fas fa-project-diagram"></i> Data-Driven vs Event-Driven Systems</div>
+                    <svg viewBox="0 0 800 250" width="800" height="250">
+                        <!-- Data-Driven System -->
+                        <text x="200" y="25" text-anchor="middle" font-weight="bold" fill="#fbbf24" font-size="14">Data-Driven System</text>
+                        <circle cx="100" cy="100" r="40" fill="#1a1a1a" stroke="#d97706" stroke-width="2"/>
+                        <text x="100" y="105" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="bold">INPUT</text>
+                        
+                        <rect x="160" y="70" width="80" height="60" fill="#2a2a2a" stroke="#d97706" stroke-width="2" rx="5"/>
+                        <text x="200" y="105" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="bold">PROCESS</text>
+                        
+                        <circle cx="300" cy="100" r="40" fill="#1a1a1a" stroke="#d97706" stroke-width="2"/>
+                        <text x="300" y="105" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="bold">OUTPUT</text>
+                        
+                        <path d="M 140 100 L 160 100" stroke="#d97706" stroke-width="2" marker-end="url(#arrow1)"/>
+                        <path d="M 240 100 L 260 100" stroke="#d97706" stroke-width="2" marker-end="url(#arrow1)"/>
+                        
+                        <text x="200" y="180" text-anchor="middle" fill="#e5e5e5" font-size="12">Example: Payroll System</text>
+                        <text x="200" y="200" text-anchor="middle" fill="#e5e5e5" font-size="11">Hours → Calculate → Paycheck</text>
+                        
+                        <!-- Event-Driven System -->
+                        <text x="650" y="25" text-anchor="middle" font-weight="bold" fill="#fbbf24" font-size="14">Event-Driven System</text>
+                        <circle cx="550" cy="100" r="35" fill="#2a2a2a" stroke="#fbbf24" stroke-width="2"/>
+                        <text x="550" y="100" text-anchor="middle" fill="#fbbf24" font-size="10" font-weight="bold">State 1</text>
+                        <text x="550" y="115" text-anchor="middle" fill="#fbbf24" font-size="10" font-weight="bold">Waiting</text>
+                        
+                        <circle cx="750" cy="100" r="35" fill="#2a2a2a" stroke="#d97706" stroke-width="2"/>
+                        <text x="750" y="100" text-anchor="middle" fill="#fbbf24" font-size="10" font-weight="bold">State 2</text>
+                        <text x="750" y="115" text-anchor="middle" fill="#fbbf24" font-size="10" font-weight="bold">Active</text>
+                        
+                        <path d="M 585 100 L 715 100" stroke="#d97706" stroke-width="2" marker-end="url(#arrow1)"/>
+                        <text x="650" y="90" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="bold">EVENT!</text>
+                        
+                        <text x="650" y="180" text-anchor="middle" fill="#e5e5e5" font-size="12">Example: Traffic Light</text>
+                        <text x="650" y="200" text-anchor="middle" fill="#e5e5e5" font-size="11">Red → (timer) → Green</text>
+                        
+                        <defs>
+                            <marker id="arrow1" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <polygon points="0 0, 10 3, 0 6" fill="#d97706"/>
+                            </marker>
+                        </defs>
+                    </svg>`;
+                return diagramContainer;
+            }
+
+            if (lectureName === "Behavioral Model" && pageIndex === 3) {
+                // State Machine Diagram
+                diagramContainer.innerHTML = `
+                    <div class="diagram-title"><i class="fas fa-project-diagram"></i> Example: State Machine for a Traffic Light</div>
+                    <svg viewBox="0 0 600 300" width="600" height="300">
+                        <!-- Red State -->
+                        <circle cx="100" cy="150" r="50" fill="#ff4444" stroke="#333" stroke-width="2"/>
+                        <text x="100" y="160" text-anchor="middle" fill="white" font-weight="bold">RED</text>
+                        
+                        <!-- Yellow State -->
+                        <circle cx="300" cy="150" r="50" fill="#ffdd44" stroke="#333" stroke-width="2"/>
+                        <text x="300" y="160" text-anchor="middle" fill="#333" font-weight="bold">YELLOW</text>
+                        
+                        <!-- Green State -->
+                        <circle cx="500" cy="150" r="50" fill="#44ff44" stroke="#333" stroke-width="2"/>
+                        <text x="500" y="160" text-anchor="middle" fill="#333" font-weight="bold">GREEN</text>
+                        
+                        <!-- Transitions (Events) -->
+                        <!-- Red to Yellow -->
+                        <path d="M 150 150 L 250 150" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                        <text x="200" y="140" font-size="12" fill="#1e3a8a" font-weight="bold">timer_expired</text>
+                        
+                        <!-- Yellow to Green -->
+                        <path d="M 350 150 L 450 150" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                        <text x="400" y="140" font-size="12" fill="#1e3a8a" font-weight="bold">timer_expired</text>
+                        
+                        <!-- Green to Red -->
+                        <path d="M 450 100 Q 300 30 150 100" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                        <text x="300" y="50" font-size="12" fill="#1e3a8a" font-weight="bold">timer_expired</text>
+                        
+                        <!-- Arrow marker definition -->
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <polygon points="0 0, 10 3, 0 6" fill="#333"/>
+                            </marker>
+                        </defs>
+                    </svg>`;
+                return diagramContainer;
+            }
+
+            if (lectureName === "Context models" && pageIndex === 0) {
+                // What are Context Models
+                diagramContainer.innerHTML = `
+                    <div class="diagram-title"><i class="fas fa-project-diagram"></i> Understanding System Boundaries</div>
+                    <svg viewBox="0 0 700 350" width="700" height="350">
+                        <!-- External World -->
+                        <text x="350" y="30" text-anchor="middle" fill="#e5e5e5" font-weight="bold" font-size="12">EXTERNAL ENVIRONMENT</text>
+                        
+                        <!-- External Systems -->
+                        <rect x="50" y="60" width="120" height="80" fill="#2a2a2a" stroke="#d97706" stroke-width="2" rx="5"/>
+                        <text x="110" y="105" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="11">External</text>
+                        <text x="110" y="125" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="11">System A</text>
+                        
+                        <rect x="530" y="60" width="120" height="80" fill="#2a2a2a" stroke="#d97706" stroke-width="2" rx="5"/>
+                        <text x="590" y="105" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="11">External</text>
+                        <text x="590" y="125" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="11">System B</text>
+                        
+                        <!-- System Boundary -->
+                        <rect x="200" y="80" width="300" height="200" fill="none" stroke="#d97706" stroke-width="3" stroke-dasharray="8,4" rx="10"/>
+                        <text x="350" y="105" text-anchor="middle" fill="#d97706" font-weight="bold" font-size="13">SYSTEM BOUNDARY</text>
+                        
+                        <!-- My System -->
+                        <rect x="250" y="150" width="200" height="100" fill="#1a1a1a" stroke="#fbbf24" stroke-width="2" rx="8"/>
+                        <text x="350" y="175" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="13">MY SYSTEM</text>
+                        <text x="350" y="200" text-anchor="middle" fill="#e5e5e5" font-size="11">(What we build &</text>
+                        <text x="350" y="220" text-anchor="middle" fill="#e5e5e5" font-size="11">control)</text>
+                        
+                        <!-- Interactions -->
+                        <path d="M 170 100 L 250 180" stroke="#d97706" stroke-width="2" marker-end="url(#arrow1)"/>
+                        <path d="M 530 100 L 450 180" stroke="#d97706" stroke-width="2" marker-end="url(#arrow1)"/>
+                        
+                        <text x="350" y="310" text-anchor="middle" fill="#e5e5e5" font-size="12" font-style="italic">Context models show what's OUTSIDE our system and how it connects</text>
+                        
+                        <defs>
+                            <marker id="arrow1" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <polygon points="0 0, 10 3, 0 6" fill="#d97706"/>
+                            </marker>
+                        </defs>
+                    </svg>`;
+                return diagramContainer;
+            }
+
+            if (lectureName === "Context models" && pageIndex === 1) {
+                // System Context Diagram
+                diagramContainer.innerHTML = `
+                    <div class="diagram-title"><i class="fas fa-project-diagram"></i> System Context: Medical System</div>
+                    <svg viewBox="0 0 600 400" width="600" height="400">
+                        <!-- External Systems/Actors -->
+                        <rect x="50" y="50" width="120" height="80" fill="#e0e7ff" stroke="#3b82f6" stroke-width="2" rx="5"/>
+                        <text x="110" y="95" text-anchor="middle" font-weight="bold" fill="#1e3a8a">Medical</text>
+                        <text x="110" y="115" text-anchor="middle" font-weight="bold" fill="#1e3a8a">Receptionist</text>
+                        
+                        <rect x="450" y="50" width="120" height="80" fill="#e0e7ff" stroke="#3b82f6" stroke-width="2" rx="5"/>
+                        <text x="510" y="95" text-anchor="middle" font-weight="bold" fill="#1e3a8a">Patient</text>
+                        <text x="510" y="115" text-anchor="middle" font-weight="bold" fill="#1e3a8a">System</text>
+                        
+                        <!-- System Boundary -->
+                        <rect x="150" y="150" width="300" height="150" fill="#fef3c7" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,5" rx="5"/>
+                        <text x="300" y="170" text-anchor="middle" font-weight="bold" fill="#f59e0b" font-size="14">System Boundary</text>
+                        
+                        <!-- Core System -->
+                        <rect x="200" y="200" width="200" height="80" fill="#dbeafe" stroke="#3b82f6" stroke-width="2" rx="5"/>
+                        <text x="300" y="245" text-anchor="middle" font-weight="bold" fill="#1e3a8a">Medical Records</text>
+                        <text x="300" y="265" text-anchor="middle" font-weight="bold" fill="#1e3a8a">System</text>
+                        
+                        <!-- Interactions -->
+                        <path d="M 170 90 L 200 210" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead2)"/>
+                        <text x="160" y="150" font-size="11" fill="#666">registers</text>
+                        
+                        <path d="M 430 90 L 400 210" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead2)"/>
+                        <text x="420" y="150" font-size="11" fill="#666">queries</text>
+                        
+                        <defs>
+                            <marker id="arrowhead2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <polygon points="0 0, 10 3, 0 6" fill="#666"/>
+                            </marker>
+                        </defs>
+                    </svg>`;
+                return diagramContainer;
+            }
+
+            if (lectureName === "Structural" && pageIndex === 2) {
+                // Class Diagram Example
+                diagramContainer.innerHTML = `
+                    <div class="diagram-title"><i class="fas fa-project-diagram"></i> Class Hierarchy Example</div>
+                    <svg viewBox="0 0 700 400" width="700" height="400">
+                        <!-- Animal Superclass -->
+                        <rect x="250" y="20" width="200" height="100" fill="#dbeafe" stroke="#3b82f6" stroke-width="2" rx="3"/>
+                        <text x="350" y="45" text-anchor="middle" font-weight="bold" fill="#1e3a8a">Animal</text>
+                        <line x1="250" y1="55" x2="450" y2="55" stroke="#3b82f6" stroke-width="1"/>
+                        <text x="260" y="75" fill="#1e3a8a" font-size="12">- name: String</text>
+                        <text x="260" y="95" fill="#1e3a8a" font-size="12">+ move()</text>
+                        <text x="260" y="110" fill="#1e3a8a" font-size="12">+ eat()</text>
+                        
+                        <!-- Dog Subclass -->
+                        <rect x="80" y="200" width="180" height="100" fill="#dcfce7" stroke="#22c55e" stroke-width="2" rx="3"/>
+                        <text x="170" y="225" text-anchor="middle" font-weight="bold" fill="#166534">Dog</text>
+                        <line x1="80" y1="235" x2="260" y2="235" stroke="#22c55e" stroke-width="1"/>
+                        <text x="90" y="255" fill="#166534" font-size="12">- breed: String</text>
+                        <text x="90" y="275" fill="#166534" font-size="12">+ bark()</text>
+                        <text x="90" y="290" fill="#166534" font-size="12">+ fetch()</text>
+                        
+                        <!-- Cat Subclass -->
+                        <rect x="440" y="200" width="180" height="100" fill="#dcfce7" stroke="#22c55e" stroke-width="2" rx="3"/>
+                        <text x="530" y="225" text-anchor="middle" font-weight="bold" fill="#166534">Cat</text>
+                        <line x1="440" y1="235" x2="620" y2="235" stroke="#22c55e" stroke-width="1"/>
+                        <text x="450" y="255" fill="#166534" font-size="12">- color: String</text>
+                        <text x="450" y="275" fill="#166534" font-size="12">+ meow()</text>
+                        <text x="450" y="290" fill="#166534" font-size="12">+ scratch()</text>
+                        
+                        <!-- Inheritance Lines -->
+                        <path d="M 350 120 L 280 200" stroke="#3b82f6" stroke-width="2" fill="none"/>
+                        <polygon points="280,200 285,190 290,195" fill="#3b82f6"/>
+                        
+                        <path d="M 350 120 L 520 200" stroke="#3b82f6" stroke-width="2" fill="none"/>
+                        <polygon points="520,200 515,190 525,195" fill="#3b82f6"/>
+                        
+                        <!-- Labels -->
+                        <text x="300" y="155" font-size="12" fill="#1e3a8a" font-weight="bold">inherits</text>
+                        <text x="480" y="155" font-size="12" fill="#1e3a8a" font-weight="bold">inherits</text>
+                    </svg>`;
+                return diagramContainer;
+            }
+
+            if (lectureName === "Structural" && pageIndex === 1) {
+                // Class Diagram Example
+                diagramContainer.innerHTML = `
+                    <div class="diagram-title"><i class="fas fa-project-diagram"></i> Object Classes: Building Blocks of Structural Models</div>
+                    <svg viewBox="0 0 700 320" width="700" height="320">
+                        <!-- Student Class -->
+                        <rect x="50" y="50" width="250" height="180" fill="#2a2a2a" stroke="#d97706" stroke-width="2" rx="5"/>
+                        <text x="175" y="75" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="12">Student (Class)</text>
+                        <line x1="50" y1="85" x2="300" y2="85" stroke="#d97706" stroke-width="1"/>
+                        
+                        <!-- Attributes -->
+                        <text x="70" y="110" fill="#e5e5e5" font-size="11">name: String</text>
+                        <text x="70" y="130" fill="#e5e5e5" font-size="11">studentID: int</text>
+                        <text x="70" y="150" fill="#e5e5e5" font-size="11">email: String</text>
+                        <text x="70" y="170" fill="#e5e5e5" font-size="11">enrolledCourses: List</text>
+                        
+                        <line x1="50" y1="180" x2="300" y2="180" stroke="#d97706" stroke-width="1"/>
+                        
+                        <!-- Methods -->
+                        <text x="70" y="205" fill="#fbbf24" font-size="11">+ enroll()</text>
+                        <text x="70" y="225" fill="#fbbf24" font-size="11">+ viewGrades()</text>
+                        
+                        <!-- Instance Example -->
+                        <rect x="400" y="50" width="250" height="180" fill="#1a1a1a" stroke="#fbbf24" stroke-width="2" rx="5"/>
+                        <text x="525" y="75" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="12">alice (Instance)</text>
+                        <line x1="400" y1="85" x2="650" y2="85" stroke="#fbbf24" stroke-width="1"/>
+                        
+                        <!-- Instance Data -->
+                        <text x="420" y="110" fill="#e5e5e5" font-size="11">name: "Alice Smith"</text>
+                        <text x="420" y="130" fill="#e5e5e5" font-size="11">studentID: 12345</text>
+                        <text x="420" y="150" fill="#e5e5e5" font-size="11">email: "alice@uni.edu"</text>
+                        <text x="420" y="170" fill="#e5e5e5" font-size="11">enrolledCourses: [CS101, MATH201]</text>
+                        
+                        <!-- Arrow showing relationship -->
+                        <path d="M 300 140 L 400 140" stroke="#d97706" stroke-width="2" marker-end="url(#arrow1)"/>
+                        <text x="350" y="130" text-anchor="middle" fill="#d97706" font-weight="bold" font-size="11">creates</text>
+                        
+                        <text x="350" y="290" text-anchor="middle" fill="#e5e5e5" font-size="11" font-style="italic">Classes define structure; instances hold actual data</text>
+                        
+                        <defs>
+                            <marker id="arrow1" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <polygon points="0 0, 10 3, 0 6" fill="#d97706"/>
+                            </marker>
+                        </defs>
+                    </svg>`;
+                return diagramContainer;
+            }
+
+            if (lectureName === "Interaction models" && pageIndex === 0) {
+                // Interaction Models Overview
+                diagramContainer.innerHTML = `
+                    <div class="diagram-title"><i class="fas fa-project-diagram"></i> Three Levels of Interaction Modeling</div>
+                    <svg viewBox="0 0 800 300" width="800" height="300">
+                        <!-- Level 1: User-System -->
+                        <rect x="30" y="40" width="210" height="120" fill="#2a2a2a" stroke="#d97706" stroke-width="2" rx="5"/>
+                        <text x="135" y="65" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="11">User-System</text>
+                        <text x="135" y="85" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="11">Interaction</text>
+                        <circle cx="70" cy="110" r="15" fill="#d97706"/>
+                        <text x="70" y="115" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">👤</text>
+                        <text x="135" y="120" text-anchor="middle" fill="#e5e5e5" font-size="10">↔ SYSTEM</text>
+                        <rect x="170" y="103" width="40" height="30" fill="#d97706" stroke="#fbbf24" stroke-width="1" rx="2"/>
+                        
+                        <!-- Level 2: System-System -->
+                        <rect x="295" y="40" width="210" height="120" fill="#2a2a2a" stroke="#d97706" stroke-width="2" rx="5"/>
+                        <text x="400" y="65" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="11">System-System</text>
+                        <text x="400" y="85" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="11">Interaction</text>
+                        <rect x="320" y="103" width="35" height="30" fill="#d97706" stroke="#fbbf24" stroke-width="1" rx="2"/>
+                        <text x="335" y="120" text-anchor="middle" fill="#e5e5e5" font-size="9">SYS A</text>
+                        <text x="400" y="120" text-anchor="middle" fill="#e5e5e5" font-size="10">↔</text>
+                        <rect x="415" y="103" width="35" height="30" fill="#d97706" stroke="#fbbf24" stroke-width="1" rx="2"/>
+                        <text x="430" y="120" text-anchor="middle" fill="#e5e5e5" font-size="9">SYS B</text>
+                        
+                        <!-- Level 3: Component -->
+                        <rect x="560" y="40" width="210" height="120" fill="#2a2a2a" stroke="#d97706" stroke-width="2" rx="5"/>
+                        <text x="665" y="65" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="11">Component</text>
+                        <text x="665" y="85" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="11">Interaction</text>
+                        <rect x="585" y="103" width="35" height="30" fill="#d97706" stroke="#fbbf24" stroke-width="1" rx="2"/>
+                        <text x="600" y="123" text-anchor="middle" fill="#e5e5e5" font-size="8">C1</text>
+                        <text x="665" y="120" text-anchor="middle" fill="#e5e5e5" font-size="10">↔</text>
+                        <rect x="680" y="103" width="35" height="30" fill="#d97706" stroke="#fbbf24" stroke-width="1" rx="2"/>
+                        <text x="695" y="123" text-anchor="middle" fill="#e5e5e5" font-size="8">C2</text>
+                        
+                        <!-- Examples -->
+                        <text x="135" y="190" text-anchor="middle" fill="#e5e5e5" font-size="10">Who talks to</text>
+                        <text x="135" y="207" text-anchor="middle" fill="#e5e5e5" font-size="10">the system?</text>
+                        
+                        <text x="400" y="190" text-anchor="middle" fill="#e5e5e5" font-size="10">How do systems</text>
+                        <text x="400" y="207" text-anchor="middle" fill="#e5e5e5" font-size="10">exchange data?</text>
+                        
+                        <text x="665" y="190" text-anchor="middle" fill="#e5e5e5" font-size="10">Do components</text>
+                        <text x="665" y="207" text-anchor="middle" fill="#e5e5e5" font-size="10">work together well?</text>
+                        
+                        <text x="400" y="260" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="12">These three perspectives help design complete, functional systems</text>
+                    </svg>`;
+                return diagramContainer;
+            }
+
+            if (lectureName === "Interaction models" && pageIndex === 2) {
+                // Sequence Diagram
+                diagramContainer.innerHTML = `
+                    <div class="diagram-title"><i class="fas fa-project-diagram"></i> Sequence Diagram: Patient Registration</div>
+                    <svg viewBox="0 0 700 350" width="700" height="350">
+                        <!-- Actors and Objects -->
+                        <rect x="30" y="10" width="100" height="40" fill="#dbeafe" stroke="#3b82f6" stroke-width="2" rx="3"/>
+                        <text x="80" y="35" text-anchor="middle" font-weight="bold" fill="#1e3a8a">Receptionist</text>
+                        
+                        <rect x="300" y="10" width="100" height="40" fill="#dbeafe" stroke="#3b82f6" stroke-width="2" rx="3"/>
+                        <text x="350" y="35" text-anchor="middle" font-weight="bold" fill="#1e3a8a">System</text>
+                        
+                        <rect x="570" y="10" width="100" height="40" fill="#dbeafe" stroke="#3b82f6" stroke-width="2" rx="3"/>
+                        <text x="620" y="35" text-anchor="middle" font-weight="bold" fill="#1e3a8a">Database</text>
+                        
+                        <!-- Lifelines -->
+                        <line x1="80" y1="50" x2="80" y2="320" stroke="#999" stroke-width="1" stroke-dasharray="3,3"/>
+                        <line x1="350" y1="50" x2="350" y2="320" stroke="#999" stroke-width="1" stroke-dasharray="3,3"/>
+                        <line x1="620" y1="50" x2="620" y2="320" stroke="#999" stroke-width="1" stroke-dasharray="3,3"/>
+                        
+                        <!-- Messages -->
+                        <!-- 1. Enter Data -->
+                        <path d="M 80 80 L 350 110" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowhead3)"/>
+                        <text x="200" y="95" font-size="11" fill="#3b82f6" font-weight="bold">1: enterPatientData()</text>
+                        
+                        <!-- 2. Validate -->
+                        <path d="M 350 130 L 350 150" stroke="#666" stroke-width="2"/>
+                        <text x="360" y="145" font-size="11" fill="#666">validate</text>
+                        
+                        <!-- 3. Store -->
+                        <path d="M 350 170 L 620 200" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowhead3)"/>
+                        <text x="470" y="185" font-size="11" fill="#3b82f6" font-weight="bold">2: savePatient()</text>
+                        
+                        <!-- 4. Return -->
+                        <path d="M 620 220 L 350 250" stroke="#999" stroke-width="2" stroke-dasharray="3,3" marker-end="url(#arrowhead4)"/>
+                        <text x="470" y="235" font-size="11" fill="#999">3: success()</text>
+                        
+                        <!-- 5. Confirm -->
+                        <path d="M 350 270 L 80 300" stroke="#999" stroke-width="2" stroke-dasharray="3,3" marker-end="url(#arrowhead4)"/>
+                        <text x="200" y="285" font-size="11" fill="#999">4: showConfirm()</text>
+                        
+                        <defs>
+                            <marker id="arrowhead3" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <polygon points="0 0, 10 3, 0 6" fill="#3b82f6"/>
+                            </marker>
+                            <marker id="arrowhead4" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <polygon points="0 0, 10 3, 0 6" fill="#999"/>
+                            </marker>
+                        </defs>
+                    </svg>`;
+                return diagramContainer;
+            }
+
+            if (lectureName === "Use cases" && pageIndex === 0) {
+                // Use Case Diagram
+                diagramContainer.innerHTML = `
+                    <div class="diagram-title"><i class="fas fa-project-diagram"></i> Use Case Diagram: Medical System</div>
+                    <svg viewBox="0 0 700 400" width="700" height="400">
+                        <!-- Actor -->
+                        <circle cx="80" cy="150" r="20" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+                        <line x1="80" y1="170" x2="80" y2="200" stroke="#3b82f6" stroke-width="2"/>
+                        <line x1="60" y1="180" x2="100" y2="180" stroke="#3b82f6" stroke-width="2"/>
+                        <line x1="80" y1="200" x2="60" y2="220" stroke="#3b82f6" stroke-width="2"/>
+                        <line x1="80" y1="200" x2="100" y2="220" stroke="#3b82f6" stroke-width="2"/>
+                        <text x="80" y="250" text-anchor="middle" font-weight="bold" fill="#1e3a8a" font-size="12">Receptionist</text>
+                        
+                        <!-- System Boundary -->
+                        <rect x="200" y="80" width="400" height="280" fill="none" stroke="#3b82f6" stroke-width="2" rx="10"/>
+                        <text x="400" y="100" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="13">Medical System</text>
+                        
+                        <!-- Use Cases -->
+                        <ellipse cx="350" cy="150" rx="70" ry="40" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+                        <text x="350" y="155" text-anchor="middle" fill="#92400e" font-weight="bold">Register Patient</text>
+                        
+                        <ellipse cx="500" cy="180" rx="70" ry="40" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+                        <text x="500" y="180" text-anchor="middle" fill="#92400e" font-weight="bold">View Patient</text>
+                        <text x="500" y="195" text-anchor="middle" fill="#92400e" font-weight="bold">Records</text>
+                        
+                        <ellipse cx="350" cy="280" rx="70" ry="40" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+                        <text x="350" y="280" text-anchor="middle" fill="#92400e" font-weight="bold">Transfer Data</text>
+                        <text x="350" y="295" text-anchor="middle" fill="#92400e" font-weight="bold">to PRS</text>
+                        
+                        <!-- Associations -->
+                        <line x1="100" y1="150" x2="280" y2="150" stroke="#666" stroke-width="2"/>
+                        <line x1="100" y1="180" x2="430" y2="180" stroke="#666" stroke-width="2"/>
+                        <line x1="100" y1="210" x2="280" y2="280" stroke="#666" stroke-width="2"/>
+                    </svg>`;
+                return diagramContainer;
+            }
+
+            if (lectureName === "Core-Principals-of-Object-Oriented-Design" && pageIndex === 0) {
+                // Four Core Principles Overview
+                diagramContainer.innerHTML = `
+                    <div class="diagram-title"><i class="fas fa-project-diagram"></i> The Four Core OOP Principles</div>
+                    <svg viewBox="0 0 900 350" width="900" height="350">
+                        <!-- Abstraction -->
+                        <rect x="20" y="50" width="180" height="140" fill="#2a2a2a" stroke="#d97706" stroke-width="2" rx="8"/>
+                        <circle cx="110" cy="80" r="20" fill="#d97706"/>
+                        <text x="110" y="85" text-anchor="middle" fill="#ffffff" font-weight="bold" font-size="12">A</text>
+                        <text x="110" y="115" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="13">Abstraction</text>
+                        <text x="110" y="140" text-anchor="middle" fill="#e5e5e5" font-size="10">Focus on</text>
+                        <text x="110" y="155" text-anchor="middle" fill="#e5e5e5" font-size="10">essentials</text>
+                        <text x="110" y="170" text-anchor="middle" fill="#e5e5e5" font-size="10">Hide detail</text>
+                        
+                        <!-- Encapsulation -->
+                        <rect x="230" y="50" width="180" height="140" fill="#2a2a2a" stroke="#d97706" stroke-width="2" rx="8"/>
+                        <circle cx="320" cy="80" r="20" fill="#d97706"/>
+                        <text x="320" y="85" text-anchor="middle" fill="#ffffff" font-weight="bold" font-size="12">E</text>
+                        <text x="320" y="115" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="13">Encapsulation</text>
+                        <text x="320" y="140" text-anchor="middle" fill="#e5e5e5" font-size="10">Bundle data &</text>
+                        <text x="320" y="155" text-anchor="middle" fill="#e5e5e5" font-size="10">behavior together</text>
+                        <text x="320" y="170" text-anchor="middle" fill="#e5e5e5" font-size="10">Restrict access</text>
+                        
+                        <!-- Decomposition -->
+                        <rect x="440" y="50" width="180" height="140" fill="#2a2a2a" stroke="#d97706" stroke-width="2" rx="8"/>
+                        <circle cx="530" cy="80" r="20" fill="#d97706"/>
+                        <text x="530" y="85" text-anchor="middle" fill="#ffffff" font-weight="bold" font-size="12">D</text>
+                        <text x="530" y="115" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="13">Decomposition</text>
+                        <text x="530" y="140" text-anchor="middle" fill="#e5e5e5" font-size="10">Break into</text>
+                        <text x="530" y="155" text-anchor="middle" fill="#e5e5e5" font-size="10">smaller parts</text>
+                        <text x="530" y="170" text-anchor="middle" fill="#e5e5e5" font-size="10">Manage complexity</text>
+                        
+                        <!-- Generalization -->
+                        <rect x="650" y="50" width="180" height="140" fill="#2a2a2a" stroke="#d97706" stroke-width="2" rx="8"/>
+                        <circle cx="740" cy="80" r="20" fill="#d97706"/>
+                        <text x="740" y="85" text-anchor="middle" fill="#ffffff" font-weight="bold" font-size="12">G</text>
+                        <text x="740" y="115" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="13">Generalization</text>
+                        <text x="740" y="140" text-anchor="middle" fill="#e5e5e5" font-size="10">Identify shared</text>
+                        <text x="740" y="155" text-anchor="middle" fill="#e5e5e5" font-size="10">patterns</text>
+                        <text x="740" y="170" text-anchor="middle" fill="#e5e5e5" font-size="10">Reduce duplication</text>
+                        
+                        <!-- Connectors -->
+                        <path d="M 200 120 L 230 120" stroke="#d97706" stroke-width="2" marker-end="url(#arrow1)"/>
+                        <path d="M 410 120 L 440 120" stroke="#d97706" stroke-width="2" marker-end="url(#arrow1)"/>
+                        <path d="M 620 120 L 650 120" stroke="#d97706" stroke-width="2" marker-end="url(#arrow1)"/>
+                        
+                        <text x="450" y="240" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="14">Master these four principles for excellent OOP design</text>
+                    </svg>`;
+                return diagramContainer;
+            }
+
+            if (lectureName === "Core-Principals-of-Object-Oriented-Design" && pageIndex === 2) {
+                // Encapsulation Illustration
+                diagramContainer.innerHTML = `
+                    <div class="diagram-title"><i class="fas fa-project-diagram"></i> Encapsulation: Public Interface, Hidden Implementation</div>
+                    <svg viewBox="0 0 700 320" width="700" height="320">
+                        <!-- Car as an example -->
+                        <rect x="100" y="40" width="500" height="240" fill="none" stroke="#d97706" stroke-width="3" stroke-dasharray="5,5" rx="10"/>
+                        <text x="350" y="65" text-anchor="middle" fill="#d97706" font-weight="bold" font-size="14">Car Object</text>
+                        
+                        <!-- Public Interface -->
+                        <rect x="130" y="90" width="440" height="50" fill="#2a2a2a" stroke="#fbbf24" stroke-width="2" rx="5"/>
+                        <text x="350" y="110" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="12">PUBLIC INTERFACE (What Users See)</text>
+                        <text x="150" y="130" fill="#e5e5e5" font-size="11">accelerate()  |  brake()  |  honk()  |  steer()</text>
+                        
+                        <!-- Hidden Implementation -->
+                        <rect x="130" y="160" width="440" height="100" fill="#1a1a1a" stroke="#d97706" stroke-width="2" rx="5"/>
+                        <text x="350" y="180" text-anchor="middle" fill="#d97706" font-weight="bold" font-size="12">HIDDEN IMPLEMENTATION (Private Details)</text>
+                        <text x="150" y="205" fill="#e5e5e5" font-size="11">- engine: Engine</text>
+                        <text x="150" y="225" fill="#e5e5e5" font-size="11">- transmission: Transmission</text>
+                        <text x="150" y="245" fill="#e5e5e5" font-size="11">- calculateFuelConsumption()</text>
+                        
+                        <!-- Arrows showing interaction -->
+                        <text x="350" y="290" text-anchor="middle" fill="#e5e5e5" font-size="12" font-style="italic">Users don't need to know how the engine works - just use the interface!</text>
+                    </svg>`;
+                return diagramContainer;
+            }
+
+            if (lectureName === "System Modelling01" && pageIndex === 0) {
+                // System Modeling Process
+                diagramContainer.innerHTML = `
+                    <div class="diagram-title"><i class="fas fa-project-diagram"></i> System Modeling Process & Multiple Perspectives</div>
+                    <svg viewBox="0 0 850 300" width="850" height="300">
+                        <!-- Real System at the top -->
+                        <rect x="300" y="20" width="250" height="50" fill="#d97706" stroke="#fbbf24" stroke-width="3" rx="8"/>
+                        <text x="425" y="52" text-anchor="middle" fill="#ffffff" font-weight="bold" font-size="14">Real System / Problem Domain</text>
+                        
+                        <!-- Four Model Types -->
+                        <!-- Context Model -->
+                        <rect x="20" y="120" width="160" height="140" fill="#2a2a2a" stroke="#d97706" stroke-width="2" rx="5"/>
+                        <circle cx="100" cy="145" r="20" fill="#d97706"/>
+                        <text x="100" y="150" text-anchor="middle" fill="#ffffff" font-weight="bold">C</text>
+                        <text x="100" y="180" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="12">Context</text>
+                        <text x="100" y="200" text-anchor="middle" fill="#e5e5e5" font-size="10">Environment &</text>
+                        <text x="100" y="215" text-anchor="middle" fill="#e5e5e5" font-size="10">Boundaries</text>
+                        <text x="100" y="230" text-anchor="middle" fill="#e5e5e5" font-size="10">What's outside?</text>
+                        
+                        <!-- Interaction Model -->
+                        <rect x="210" y="120" width="160" height="140" fill="#2a2a2a" stroke="#d97706" stroke-width="2" rx="5"/>
+                        <circle cx="290" cy="145" r="20" fill="#d97706"/>
+                        <text x="290" y="150" text-anchor="middle" fill="#ffffff" font-weight="bold">I</text>
+                        <text x="290" y="180" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="12">Interaction</text>
+                        <text x="290" y="200" text-anchor="middle" fill="#e5e5e5" font-size="10">Communications &</text>
+                        <text x="290" y="215" text-anchor="middle" fill="#e5e5e5" font-size="10">Workflows</text>
+                        <text x="290" y="230" text-anchor="middle" fill="#e5e5e5" font-size="10">How do we talk?</text>
+                        
+                        <!-- Structural Model -->
+                        <rect x="400" y="120" width="160" height="140" fill="#2a2a2a" stroke="#d97706" stroke-width="2" rx="5"/>
+                        <circle cx="480" cy="145" r="20" fill="#d97706"/>
+                        <text x="480" y="150" text-anchor="middle" fill="#ffffff" font-weight="bold">S</text>
+                        <text x="480" y="180" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="12">Structural</text>
+                        <text x="480" y="200" text-anchor="middle" fill="#e5e5e5" font-size="10">Organization &</text>
+                        <text x="480" y="215" text-anchor="middle" fill="#e5e5e5" font-size="10">Components</text>
+                        <text x="480" y="230" text-anchor="middle" fill="#e5e5e5" font-size="10">How is it built?</text>
+                        
+                        <!-- Behavioral Model -->
+                        <rect x="590" y="120" width="160" height="140" fill="#2a2a2a" stroke="#d97706" stroke-width="2" rx="5"/>
+                        <circle cx="670" cy="145" r="20" fill="#d97706"/>
+                        <text x="670" y="150" text-anchor="middle" fill="#ffffff" font-weight="bold">B</text>
+                        <text x="670" y="180" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="12">Behavioral</text>
+                        <text x="670" y="200" text-anchor="middle" fill="#e5e5e5" font-size="10">Dynamic Response &</text>
+                        <text x="670" y="215" text-anchor="middle" fill="#e5e5e5" font-size="10">State Changes</text>
+                        <text x="670" y="230" text-anchor="middle" fill="#e5e5e5" font-size="10">How does it act?</text>
+                        
+                        <!-- Arrows down from real system -->
+                        <path d="M 350 70 L 100 120" stroke="#d97706" stroke-width="2" marker-end="url(#arrow1)"/>
+                        <path d="M 380 70 L 290 120" stroke="#d97706" stroke-width="2" marker-end="url(#arrow1)"/>
+                        <path d="M 470 70 L 480 120" stroke="#d97706" stroke-width="2" marker-end="url(#arrow1)"/>
+                        <path d="M 500 70 L 670 120" stroke="#d97706" stroke-width="2" marker-end="url(#arrow1)"/>
+                    </svg>`;
+                return diagramContainer;
+            }
+
+            if (lectureName === "samples" && pageIndex === 0) {
+                // Sample Project Overview
+                diagramContainer.innerHTML = `
+                    <div class="diagram-title"><i class="fas fa-project-diagram"></i> Real-World Project: Internship Portal Architecture</div>
+                    <svg viewBox="0 0 800 350" width="800" height="350">
+                        <!-- Frontend -->
+                        <rect x="50" y="50" width="200" height="100" fill="#2a2a2a" stroke="#d97706" stroke-width="2" rx="8"/>
+                        <text x="150" y="75" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="12">FRONTEND</text>
+                        <text x="150" y="100" text-anchor="middle" fill="#e5e5e5" font-size="11">Student Dashboard</text>
+                        <text x="150" y="120" text-anchor="middle" fill="#e5e5e5" font-size="11">Company Portal</text>
+                        <text x="150" y="140" text-anchor="middle" fill="#e5e5e5" font-size="11">Admin Interface</text>
+                        
+                        <!-- Backend API -->
+                        <rect x="300" y="50" width="200" height="100" fill="#2a2a2a" stroke="#d97706" stroke-width="2" rx="8"/>
+                        <text x="400" y="75" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="12">BACKEND API</text>
+                        <text x="400" y="100" text-anchor="middle" fill="#e5e5e5" font-size="11">Authentication</text>
+                        <text x="400" y="120" text-anchor="middle" fill="#e5e5e5" font-size="11">CRUD Operations</text>
+                        <text x="400" y="140" text-anchor="middle" fill="#e5e5e5" font-size="11">Business Logic</text>
+                        
+                        <!-- Database -->
+                        <rect x="550" y="50" width="200" height="100" fill="#2a2a2a" stroke="#d97706" stroke-width="2" rx="8"/>
+                        <text x="650" y="75" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="12">DATABASE</text>
+                        <text x="650" y="100" text-anchor="middle" fill="#e5e5e5" font-size="11">Users (Students,</text>
+                        <text x="650" y="120" text-anchor="middle" fill="#e5e5e5" font-size="11">Companies)</text>
+                        <text x="650" y="140" text-anchor="middle" fill="#e5e5e5" font-size="11">Listings & Applications</text>
+                        
+                        <!-- Connections -->
+                        <path d="M 250 100 L 300 100" stroke="#d97706" stroke-width="2" marker-end="url(#arrow1)"/>
+                        <path d="M 500 100 L 550 100" stroke="#d97706" stroke-width="2" marker-end="url(#arrow1)"/>
+                        
+                        <!-- Key Workflows -->
+                        <text x="400" y="200" text-anchor="middle" fill="#fbbf24" font-weight="bold" font-size="13">Core Workflows:</text>
+                        <text x="400" y="230" text-anchor="middle" fill="#e5e5e5" font-size="11">1. Company posts internship (approval required)</text>
+                        <text x="400" y="250" text-anchor="middle" fill="#e5e5e5" font-size="11">2. Students search & filter by city/domain/skills</text>
+                        <text x="400" y="270" text-anchor="middle" fill="#e5e5e5" font-size="11">3. Students apply with resume, get confirmation</text>
+                        <text x="400" y="290" text-anchor="middle" fill="#e5e5e5" font-size="11">4. Coordinator exports data for reports</text>
+                        
+                        <defs>
+                            <marker id="arrow1" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <polygon points="0 0, 10 3, 0 6" fill="#d97706"/>
+                            </marker>
+                        </defs>
+                    </svg>`;
+                return diagramContainer;
+            }
+
+            return null;
+        }
+
+        function generateLectureContent() {
+            const container = document.getElementById('lectureContainer');
+            const lectures = Object.keys(lectureData);
+
+            lectures.forEach((lectureName, lectureIndex) => {
+                const lectureSection = document.createElement('section');
+                lectureSection.className = 'lecture-section' + (lectureIndex === 0 ? ' active' : '');
+                lectureSection.id = 'lecture-' + lectureName;
+
+                const headerHTML = `
+                    <div class="lecture-header">
+                        <h2>${lectureName}</h2>
+                        <p>Complete Review & Learning Material</p>
+                    </div>
+                    <div class="lecture-content"></div>
+                `;
+                lectureSection.innerHTML = headerHTML;
+
+                const contentDiv = lectureSection.querySelector('.lecture-content');
+                const pages = lectureData[lectureName].pages;
+
+                pages.forEach((page, index) => {
+                    const pageBlock = document.createElement('div');
+                    pageBlock.className = 'page-block';
+
+                    let pageHTML = `
+                        <div class="page-title">${page.title}</div>
+                        <div class="page-text">${page.content}</div>
+                    `;
+
+                    if (page.explanation) {
+                        pageHTML += `
+                            <div class="explanation">
+                                <h4><i class="fas fa-lightbulb"></i> Teacher's Explanation:</h4>
+                                <div class="explanation-text">${page.explanation}</div>
+                            </div>
+                        `;
+                    }
+
+                    pageBlock.innerHTML = pageHTML;
+                    contentDiv.appendChild(pageBlock);
+                    
+                    // Add diagram if applicable
+                    const diagram = generateDiagram(lectureName, index);
+                    if (diagram) {
+                        contentDiv.appendChild(diagram);
+                    }
+                });
+
+                container.appendChild(lectureSection);
+            });
+        }
+
+        function generateQuizFilter() {
+            const filter = document.getElementById('lectureFilter');
+            const lectures = Object.keys(lectureData);
+
+            lectures.forEach(lecture => {
+                const option = document.createElement('option');
+                option.value = lecture;
+                option.textContent = lecture;
+                filter.appendChild(option);
+            });
+
+            filter.addEventListener('change', () => filterQuestions());
+        }
+
+        function generateQuizQuestions() {
+            const container = document.getElementById('quizContainer');
+            
+            quizQuestions.forEach((q, index) => {
+                const questionCard = document.createElement('div');
+                questionCard.className = 'question-card show';
+                questionCard.dataset.lecture = q.lecture;
+                questionCard.dataset.index = index;
+
+                let optionsHTML = '';
+                q.options.forEach((option, optIndex) => {
+                    optionsHTML += `
+                        <label class="option">
+                            <input type="radio" name="q${index}" value="${optIndex}" onclick="selectAnswer(${index}, ${optIndex})">
+                            <span>${option}</span>
+                        </label>
+                    `;
+                });
+
+                questionCard.innerHTML = `
+                    <div class="question-number">${index + 1}</div>
+                    <div class="question-text">${q.question}</div>
+                    <div class="options">${optionsHTML}</div>
+                    <div class="feedback" id="feedback-${index}"></div>
+                `;
+
+                container.appendChild(questionCard);
+            });
+        }
+
+        function switchLecture(lectureName) {
+            // Hide all sections
+            document.querySelectorAll('.lecture-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById('quiz-section').classList.remove('active');
+
+            // Hide all nav tabs highlight
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById('lecture-' + lectureName).classList.add('active');
+
+            // Highlight selected tab
+            event.target.classList.add('active');
+
+            scrollToTop();
+        }
+
+        function switchToQuiz() {
+            document.querySelectorAll('.lecture-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            document.getElementById('quiz-section').classList.add('active');
+            event.target.classList.add('active');
+
+            scrollToTop();
+        }
+
+        function selectAnswer(questionIndex, optionIndex) {
+            const question = quizQuestions[questionIndex];
+            const questionCard = document.querySelector(`[data-index="${questionIndex}"]`);
+            const feedbackDiv = document.getElementById(`feedback-${questionIndex}`);
+            const options = questionCard.querySelectorAll('.option');
+
+            options.forEach((opt, idx) => {
+                opt.classList.remove('correct', 'incorrect', 'selected');
+            });
+
+            if (optionIndex === question.correct) {
+                options[optionIndex].classList.add('correct');
+                feedbackDiv.className = 'feedback show correct';
+                feedbackDiv.innerHTML = `✓ Correct! ${question.explanation}`;
+            } else {
+                options[optionIndex].classList.add('incorrect');
+                options[question.correct].classList.add('correct');
+                feedbackDiv.className = 'feedback show incorrect';
+                feedbackDiv.innerHTML = `✗ Incorrect. The correct answer is: ${question.options[question.correct]}. ${question.explanation}`;
+            }
+
+            questionCard.classList.add('answered');
+            questionCard.classList.add('locked');
+            updateStats();
+        }
+
+        function filterQuestions() {
+            const selectedLecture = document.getElementById('lectureFilter').value;
+            const questions = document.querySelectorAll('.question-card');
+
+            questions.forEach(card => {
+                if (selectedLecture === 'all' || card.dataset.lecture === selectedLecture) {
+                    card.classList.add('show');
+                } else {
+                    card.classList.remove('show');
+                }
+            });
+
+            updateStats();
+        }
+
+        function updateStats() {
+            const allQuestions = document.querySelectorAll('.question-card.show');
+            let answered = 0;
+            let correct = 0;
+
+            allQuestions.forEach(card => {
+                const feedback = card.querySelector('.feedback');
+                if (feedback && feedback.classList.contains('show')) {
+                    answered++;
+                    if (feedback.classList.contains('correct')) {
+                        correct++;
+                    }
+                }
+            });
+
+            const percentage = allQuestions.length > 0 ? Math.round((correct / answered * 100)) || 0 : 0;
+
+            document.getElementById('totalAnswered').textContent = answered;
+            document.getElementById('correctCount').textContent = correct;
+            document.getElementById('scorePercentage').textContent = answered > 0 ? percentage + '%' : '0%';
+        }
+
+        function resetQuiz() {
+            document.querySelectorAll('.question-card').forEach(card => {
+                card.classList.remove('answered', 'locked');
+                const inputs = card.querySelectorAll('input[type="radio"]');
+                inputs.forEach(input => input.checked = false);
+                const feedback = card.querySelector('.feedback');
+                if (feedback) {
+                    feedback.classList.remove('show', 'correct', 'incorrect');
+                }
+                const options = card.querySelectorAll('.option');
+                options.forEach(opt => opt.classList.remove('correct', 'incorrect', 'selected'));
+            });
+            updateStats();
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Back to top button
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('backToTop');
+            if (window.scrollY > 300) {
+                btn.style.display = 'flex';
+            } else {
+                btn.style.display = 'none';
+            }
+        });
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', initializePage);
+    </script>
+</body>
+</html>

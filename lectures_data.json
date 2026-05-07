@@ -1,0 +1,1525 @@
+{
+  "Behavioral Model": {
+    "name": "Behavioral Model",
+    "total_pages": 11,
+    "pages": [
+      {
+        "page_num": 1,
+        "text": "Behavioral models\n30/10/2014 Chapter 5 System Modeling 35",
+        "tables": []
+      },
+      {
+        "page_num": 2,
+        "text": "Behavioral models\n Behavioral models are models of the dynamic behavior\nof a system as it is executing. They show what happens\nor what is supposed to happen when a system responds\nto a stimulus from its environment.\n You can think of these stimuli as being of two types:\n Data Some data arrives that has to be processed by the system.\n Events Some event happens that triggers system processing.\nEvents may have associated data, although this is not always\nthe case.\n30/10/2014 Chapter 5 System Modeling 36",
+        "tables": []
+      },
+      {
+        "page_num": 3,
+        "text": "Data-driven modeling\n Many business systems are data-processing systems\nthat are primarily driven by data. They are controlled by\nthe data input to the system, with relatively little external\nevent processing.\n Data-driven models show the sequence of actions\ninvolved in processing input data and generating an\nassociated output.\n They are particularly useful during the analysis of\nrequirements as they can be used to show end-to-end\nprocessing in a system.\n30/10/2014 Chapter 5 System Modeling 37",
+        "tables": []
+      },
+      {
+        "page_num": 4,
+        "text": "An activity model of the insulin pump’s\noperation\n30/10/2014 Chapter 5 System Modeling 38",
+        "tables": []
+      },
+      {
+        "page_num": 5,
+        "text": "Order processing\n30/10/2014 Chapter 5 System Modeling 39",
+        "tables": []
+      },
+      {
+        "page_num": 6,
+        "text": "Event-driven modeling\n Real-time systems are often event-driven, with minimal\ndata processing. For example, a landline phone\nswitching system responds to events such as ‘receiver\noff hook’ by generating a dial tone.\n Event-driven modeling shows how a system responds to\nexternal and internal events.\n It is based on the assumption that a system has a finite\nnumber of states and that events (stimuli) may cause a\ntransition from one state to another.\n30/10/2014 Chapter 5 System Modeling 40",
+        "tables": []
+      },
+      {
+        "page_num": 7,
+        "text": "State machine models\n These model the behaviour of the system in response to\nexternal and internal events.\n They show the system’s responses to stimuli so are\noften used for modelling real-time systems.\n State machine models show system states as nodes and\nevents as arcs between these nodes. When an event\noccurs, the system moves from one state to another.\n Statecharts are an integral part of the UML and are used\nto represent state machine models.\n30/10/2014 Chapter 5 System Modeling 41",
+        "tables": []
+      },
+      {
+        "page_num": 8,
+        "text": "State diagram of a microwave oven\n30/10/2014 Chapter 5 System Modeling 42",
+        "tables": []
+      },
+      {
+        "page_num": 9,
+        "text": "Microwave oven operation\n30/10/2014 Chapter 5 System Modeling 43",
+        "tables": []
+      },
+      {
+        "page_num": 10,
+        "text": "States and stimuli for the microwave oven (a)\nState Description\nWaiting The oven is waiting for input. The display shows the current time.\nHalf power The oven power is set to 300 watts. The display shows ‘Half power’.\nFull power The oven power is set to 600 watts. The display shows ‘Full power’.\nSet time The cooking time is set to the user’s input value. The display shows\nthe cooking time selected and is updated as the time is set.\nDisabled Oven operation is disabled for safety. Interior oven light is on.\nDisplay shows ‘Not ready’.\nEnabled Oven operation is enabled. Interior oven light is off. Display shows\n‘Ready to cook’.\nOperation Oven in operation. Interior oven light is on. Display shows the timer\ncountdown. On completion of cooking, the buzzer is sounded for five\nseconds. Oven light is on. Display shows ‘Cooking complete’ while\nbuzzer is sounding.\n30/10/2014 Chapter 5 System Modeling 44",
+        "tables": [
+          [
+            [
+              "State",
+              "Description"
+            ],
+            [
+              "Waiting",
+              "The oven is waiting for input. The display shows the current time."
+            ],
+            [
+              "Half power",
+              "The oven power is set to 300 watts. The display shows ‘Half power’."
+            ],
+            [
+              "Full power",
+              "The oven power is set to 600 watts. The display shows ‘Full power’."
+            ],
+            [
+              "Set time",
+              "The cooking time is set to the user’s input value. The display shows\nthe cooking time selected and is updated as the time is set."
+            ],
+            [
+              "Disabled",
+              "Oven operation is disabled for safety. Interior oven light is on.\nDisplay shows ‘Not ready’."
+            ],
+            [
+              "Enabled",
+              "Oven operation is enabled. Interior oven light is off. Display shows\n‘Ready to cook’."
+            ],
+            [
+              "Operation",
+              "Oven in operation. Interior oven light is on. Display shows the timer\ncountdown. On completion of cooking, the buzzer is sounded for five\nseconds. Oven light is on. Display shows ‘Cooking complete’ while\nbuzzer is sounding."
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 11,
+        "text": "States and stimuli for the microwave oven (b)\nStimulus Description\nHalf power The user has pressed the half-power button.\nFull power The user has pressed the full-power button.\nTimer The user has pressed one of the timer buttons.\nNumber The user has pressed a numeric key.\nDoor open The oven door switch is not closed.\nDoor closed The oven door switch is closed.\nStart The user has pressed the Start button.\nCancel The user has pressed the Cancel button.\n30/10/2014 Chapter 5 System Modeling 45",
+        "tables": [
+          [
+            [
+              "Stimulus",
+              "Description"
+            ],
+            [
+              "Half power",
+              "The user has pressed the half-power button."
+            ],
+            [
+              "Full power",
+              "The user has pressed the full-power button."
+            ],
+            [
+              "Timer",
+              "The user has pressed one of the timer buttons."
+            ],
+            [
+              "Number",
+              "The user has pressed a numeric key."
+            ],
+            [
+              "Door open",
+              "The oven door switch is not closed."
+            ],
+            [
+              "Door closed",
+              "The oven door switch is closed."
+            ],
+            [
+              "Start",
+              "The user has pressed the Start button."
+            ],
+            [
+              "Cancel",
+              "The user has pressed the Cancel button."
+            ]
+          ]
+        ]
+      }
+    ]
+  },
+  "Context models": {
+    "name": "Context models",
+    "total_pages": 6,
+    "pages": [
+      {
+        "page_num": 1,
+        "text": "Context models\n30/10/2014 Chapter 5 System Modeling 8",
+        "tables": []
+      },
+      {
+        "page_num": 2,
+        "text": "Context models\n Context models are used to illustrate the operational\ncontext of a system - they show what lies outside the\nsystem boundaries.\n Social and organisational concerns may affect the\ndecision on where to position system boundaries.\n Architectural models show the system and its\nrelationship with other systems.\n30/10/2014 Chapter 5 System Modeling 9",
+        "tables": []
+      },
+      {
+        "page_num": 3,
+        "text": "System boundaries\n System boundaries are established to define what is\ninside and what is outside the system.\n They show other systems that are used or depend on the system\nbeing developed.\n The position of the system boundary has a profound\neffect on the system requirements.\n Defining a system boundary is a political judgment\n There may be pressures to develop system boundaries that\nincrease / decrease the influence or workload of different parts of\nan organization.\n30/10/2014 Chapter 5 System Modeling 10",
+        "tables": []
+      },
+      {
+        "page_num": 4,
+        "text": "The context of the Mentcare system\n30/10/2014 Chapter 5 System Modeling 11",
+        "tables": [
+          [
+            [
+              "",
+              ""
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 5,
+        "text": "Process perspective\n Context models simply show the other systems in the\nenvironment, not how the system being developed is\nused in that environment.\n Process models reveal how the system being developed\nis used in broader business processes.\n UML activity diagrams may be used to define business\nprocess models.\n30/10/2014 Chapter 5 System Modeling 12",
+        "tables": []
+      },
+      {
+        "page_num": 6,
+        "text": "Process model of involuntary detention\n30/10/2014 Chapter 5 System Modeling 13",
+        "tables": []
+      }
+    ]
+  },
+  "Core-Principals-of-Object-Oriented-Design": {
+    "name": "Core-Principals-of-Object-Oriented-Design",
+    "total_pages": 32,
+    "pages": [
+      {
+        "page_num": 1,
+        "text": "Core Principles of Object-Oriented Design\nUnderstanding object-oriented modeling begins with mastering four key\ndesign principles that shape robust software systems:\nAbstraction – Focuses on essential attributes and behaviors, hiding\nunnecessary detail.\nEncapsulation – Bundles data and behavior together and restricts\ndirect access to internals.\nDecomposition – Breaks complex systems into smaller, manageable\nparts with clear responsibilities.\nGeneralization – Identifies shared structure or behavior across\nclasses and centralizes it to reduce duplication.\nThese principles work best in combination to create flexible, maintainable\nsystems.\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 19/92",
+        "tables": [
+          [
+            [
+              "Core Principles of Object-Oriented Design",
+              null,
+              null
+            ],
+            [
+              "Understanding object-oriented modeling begins with mastering four key\ndesign principles that shape robust software systems:\nAbstraction – Focuses on essential attributes and behaviors, hiding\nunnecessary detail.\nEncapsulation – Bundles data and behavior together and restricts\ndirect access to internals.\nDecomposition – Breaks complex systems into smaller, manageable\nparts with clear responsibilities.\nGeneralization – Identifies shared structure or behavior across\nclasses and centralizes it to reduce duplication.\nThese principles work best in combination to create flexible, maintainable\nsystems.",
+              null,
+              null
+            ],
+            [
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 19/92"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 2,
+        "text": "Abstraction in Object-Oriented Design\nDefinition\nAbstraction is the idea of simplifying a concept in the problem domain to\nits essentials within some context. It allows you to better understand a\nconcept by breaking it down into a simplified description that ignores\nunimportant details.\nHelps manage complexity by focusing on only what matters for a\nspecific purpose.\nEliminates unnecessary attributes or behaviors from the design.\nIn object-oriented modeling, abstraction is realized through classes.\nDifferent contexts lead to different abstractions of the same concept.\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 20/92",
+        "tables": [
+          [
+            [
+              "Abstraction in Object-Oriented Design",
+              null,
+              null,
+              null
+            ],
+            [
+              "Definition\nAbstraction is the idea of simplifying a concept in the problem domain to\nits essentials within some context. It allows you to better understand a\nconcept by breaking it down into a simplified description that ignores\nunimportant details.\nHelps manage complexity by focusing on only what matters for a\nspecific purpose.\nEliminates unnecessary attributes or behaviors from the design.\nIn object-oriented modeling, abstraction is realized through classes.\nDifferent contexts lead to different abstractions of the same concept.",
+              null,
+              null,
+              null
+            ],
+            [
+              "",
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 20/92"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 3,
+        "text": "Forming Abstractions Using Context\nRule of Least Astonishment\nThe abstraction captures the essential attributes and behavior for a\nconcept with no surprises and no definitions that fall beyond its scope.\nYou don’t want to surprise anyone trying to understand your abstraction\nwith irrelevant characteristics.\nAbstractions must be formed relative to a specific context or system\ngoal.\nThe same concept may have different abstractions in different\napplications.\nExample: A \"Person\" abstraction in a driving app vs. a restaurant\napp will focus on different characteristics.\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 21/92",
+        "tables": [
+          [
+            [
+              "Forming Abstractions Using Context",
+              null,
+              null,
+              null
+            ],
+            [
+              "Rule of Least Astonishment\nThe abstraction captures the essential attributes and behavior for a\nconcept with no surprises and no definitions that fall beyond its scope.\nYou don’t want to surprise anyone trying to understand your abstraction\nwith irrelevant characteristics.\nAbstractions must be formed relative to a specific context or system\ngoal.\nThe same concept may have different abstractions in different\napplications.\nExample: A \"Person\" abstraction in a driving app vs. a restaurant\napp will focus on different characteristics.",
+              null,
+              null,
+              null
+            ],
+            [
+              "",
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 21/92"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 4,
+        "text": "Class and Abstraction\nClass is the abstraction template of a person.\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 22/92",
+        "tables": [
+          [
+            [
+              "Class and Abstraction",
+              null,
+              null
+            ],
+            [
+              "Class is the abstraction template of a person.",
+              null,
+              null
+            ],
+            [
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 22/92"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 5,
+        "text": "Object and Instantiation\nObject instantiated of a class has the essential details for that\ninstance in that context.\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 23/92",
+        "tables": [
+          [
+            [
+              "Object and Instantiation",
+              null,
+              null
+            ],
+            [
+              "Object instantiated of a class has the essential details for that\ninstance in that context.",
+              null,
+              null
+            ],
+            [
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 23/92"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 6,
+        "text": "Abstraction Example: Student in Academia\nContext: Academic system modeling students.\nRelevant attributes:\nCourses enrolled\nGrades\nStudent ID\nThese are stable attributes; values may change, but their presence is\nconstant.\nRelevant behaviors:\nStudying\nDoing assignments\nAttending lectures\nIrrelevant attributes in this context:\nPet ownership\nFavorite video game\nKitchen cleaning habits\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 24/92",
+        "tables": [
+          [
+            [
+              "Abstraction Example: Student in Academia",
+              null,
+              null
+            ],
+            [
+              "Context: Academic system modeling students.\nRelevant attributes:\nCourses enrolled\nGrades\nStudent ID\nThese are stable attributes; values may change, but their presence is\nconstant.\nRelevant behaviors:\nStudying\nDoing assignments\nAttending lectures\nIrrelevant attributes in this context:\nPet ownership\nFavorite video game\nKitchen cleaning habits",
+              null,
+              null
+            ],
+            [
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 24/92"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 7,
+        "text": "Practice: House Cat Abstraction (Owner Perspective)\nRelevant attributes:\nName\nColor\nMicrochip ID\nFavorite nap location\nRelevant behaviors:\nNapping\nGrooming\nEating\nUsing the litter box\nIrrelevant details are excluded — e.g., the brand of cat food or room\ntemperature.\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 25/92",
+        "tables": [
+          [
+            [
+              "Practice: House Cat Abstraction (Owner Perspective)",
+              null,
+              null
+            ],
+            [
+              "Relevant attributes:\nName\nColor\nMicrochip ID\nFavorite nap location\nRelevant behaviors:\nNapping\nGrooming\nEating\nUsing the litter box\nIrrelevant details are excluded — e.g., the brand of cat food or room\ntemperature.",
+              null,
+              null
+            ],
+            [
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 25/92"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 8,
+        "text": "Why Abstraction Matters\nAbstraction simplifies class design by focusing only on what is\nessential.\nIt improves clarity and keeps each class aligned with a specific\npurpose.\nWell-formed abstractions make the system easier to understand,\nmaintain, and extend.\nThey encourage thoughtful decisions about what each class should\nrepresent and do.\nAbstractions are not fixed — they evolve as the problem domain and\nsystem requirements change.\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 26/92",
+        "tables": [
+          [
+            [
+              "Why Abstraction Matters",
+              null,
+              null
+            ],
+            [
+              "Abstraction simplifies class design by focusing only on what is\nessential.\nIt improves clarity and keeps each class aligned with a specific\npurpose.\nWell-formed abstractions make the system easier to understand,\nmaintain, and extend.\nThey encourage thoughtful decisions about what each class should\nrepresent and do.\nAbstractions are not fixed — they evolve as the problem domain and\nsystem requirements change.",
+              null,
+              null
+            ],
+            [
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 26/92"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 9,
+        "text": "What is Encapsulation?\nEncapsulation is a core object-oriented design principle.\nIt bundles related data (attributes) and behaviors (methods) into a\nsingle, self-contained unit: the object.\nEach class defines the essential structure and behavior of its objects.\nEncapsulation makes objects act like \"capsules\" — some internals are\naccessible externally, others are hidden.\nDefinition\nEncapsulation forms a self-contained object by bundling the data and\nfunctions it requires to work, exposes an interface whereby other objects\ncan access and use it, and restricts access to certain inside details.\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 27/92",
+        "tables": [
+          [
+            [
+              "What is Encapsulation?",
+              null,
+              null,
+              null
+            ],
+            [
+              "Encapsulation is a core object-oriented design principle.\nIt bundles related data (attributes) and behaviors (methods) into a\nsingle, self-contained unit: the object.\nEach class defines the essential structure and behavior of its objects.\nEncapsulation makes objects act like \"capsules\" — some internals are\naccessible externally, others are hidden.\nDefinition\nEncapsulation forms a self-contained object by bundling the data and\nfunctions it requires to work, exposes an interface whereby other objects\ncan access and use it, and restricts access to certain inside details.",
+              null,
+              null,
+              null
+            ],
+            [
+              "",
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 27/92"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 10,
+        "text": "Encapsulation Illustrated\nEncapsulation hides an object’s internal parts and shows only what’s\nneeded.\nThis is how objects work: clean outside, hidden complexity inside.\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 28/92",
+        "tables": [
+          [
+            [
+              "Encapsulation Illustrated",
+              null,
+              null
+            ],
+            [
+              "Encapsulation hides an object’s internal parts and shows only what’s\nneeded.\nThis is how objects work: clean outside, hidden complexity inside.",
+              null,
+              null
+            ],
+            [
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 28/92"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 11,
+        "text": "Three Aspects of Encapsulation\nBundling: Group related data and behavior into a single object.\nInterface: Expose only selected attributes and methods for use by\nother objects.\nHiding: Keep internal details private to protect the object from\nunintended access or misuse.\nThis makes your code easier to understand, modify, and protect.\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 29/92",
+        "tables": [
+          [
+            [
+              "Three Aspects of Encapsulation",
+              null,
+              null
+            ],
+            [
+              "Bundling: Group related data and behavior into a single object.\nInterface: Expose only selected attributes and methods for use by\nother objects.\nHiding: Keep internal details private to protect the object from\nunintended access or misuse.\nThis makes your code easier to understand, modify, and protect.",
+              null,
+              null
+            ],
+            [
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 29/92"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 12,
+        "text": "Encapsulation Through Interfaces\nClasses define public methods to allow controlled access to data and\nbehavior.\nExample:\nA course may offer a method for a student to enroll.\nA professor may use a method to retrieve a list of enrolled students.\nInternals are protected — attributes are not accessed directly.\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 30/92",
+        "tables": [
+          [
+            [
+              "Encapsulation Through Interfaces",
+              null,
+              null
+            ],
+            [
+              "Classes define public methods to allow controlled access to data and\nbehavior.\nExample:\nA course may offer a method for a student to enroll.\nA professor may use a method to retrieve a list of enrolled students.\nInternals are protected — attributes are not accessed directly.",
+              null,
+              null
+            ],
+            [
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 30/92"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 13,
+        "text": "Protecting Internal State\nEncapsulation restricts direct access to an object’s internal data to\nprotect integrity.\nInstead of accessing fields directly, external code uses public methods\n(getters and setters).\nThis approach allows validation, formatting, or other logic before\ndata is returned or modified.\nExample:\nA Student class stores GPA.\nIt exposes a method getGPA() or better yet, isInGoodStanding().\nThis keeps GPA access controlled, and prevents unwanted or unsafe\nchanges.\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 31/92",
+        "tables": [
+          [
+            [
+              "Protecting Internal State",
+              null,
+              null
+            ],
+            [
+              "Encapsulation restricts direct access to an object’s internal data to\nprotect integrity.\nInstead of accessing fields directly, external code uses public methods\n(getters and setters).\nThis approach allows validation, formatting, or other logic before\ndata is returned or modified.\nExample:\nA Student class stores GPA.\nIt exposes a method getGPA() or better yet, isInGoodStanding().\nThis keeps GPA access controlled, and prevents unwanted or unsafe\nchanges.",
+              null,
+              null
+            ],
+            [
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 31/92"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 14,
+        "text": "Benefits for Maintenance and Change\nEncapsulation hides how data and behavior are implemented behind a\nstable interface.\nYou can change the internal logic without affecting other parts of the\nsystem.\nThis reduces risk during updates and keeps code modular and\nmaintainable.\nExample:\nA professor wants to verify a student’s GPA.\nThe student might provide it:\nFrom paper records\nThrough a database\nUsing an online system\nThe professor uses the same method call — unaware of the internal\nprocess.\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 32/92",
+        "tables": [
+          [
+            [
+              "Benefits for Maintenance and Change",
+              null,
+              null
+            ],
+            [
+              "Encapsulation hides how data and behavior are implemented behind a\nstable interface.\nYou can change the internal logic without affecting other parts of the\nsystem.\nThis reduces risk during updates and keeps code modular and\nmaintainable.\nExample:\nA professor wants to verify a student’s GPA.\nThe student might provide it:\nFrom paper records\nThrough a database\nUsing an online system\nThe professor uses the same method call — unaware of the internal\nprocess.",
+              null,
+              null
+            ],
+            [
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 32/92"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 15,
+        "text": "Black Box Thinking and the Abstraction Barrier\nA class should behave like a black box — its internal implementation\nremains hidden.\nInteraction occurs through public methods that return results or\nperform actions.\nThis abstraction barrier simplifies usage and reduces dependency on\ninternal details.\nPromotes reusability and minimizes the impact of internal changes.\nExample\nA User class may offer a method getFullName(). The caller does not\nneed to know whether the name is stored as one field or composed from\nfirst and last names — only that the full name is returned.\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 33/92",
+        "tables": [
+          [
+            [
+              "Black Box Thinking and the Abstraction Barrier",
+              null,
+              null,
+              null
+            ],
+            [
+              "A class should behave like a black box — its internal implementation\nremains hidden.\nInteraction occurs through public methods that return results or\nperform actions.\nThis abstraction barrier simplifies usage and reduces dependency on\ninternal details.\nPromotes reusability and minimizes the impact of internal changes.\nExample\nA User class may offer a method getFullName(). The caller does not\nneed to know whether the name is stored as one field or composed from\nfirst and last names — only that the full name is returned.",
+              null,
+              null,
+              null
+            ],
+            [
+              "",
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 33/92"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 16,
+        "text": "Summary: Why Encapsulation Matters\nEncapsulation keeps software modular by organizing data and\nbehavior into self-contained classes.\nIt improves maintainability by allowing internal implementations to\nchange without affecting external code.\nIt enhances security and integrity by preventing direct access to\ninternal state, reducing the risk of unintended side effects.\nIt supports black-box thinking — external parts of the system\ninteract only through well-defined interfaces.\nThis separation of concerns leads to clearer, more reliable, and\neasier-to-manage software.\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 34/92",
+        "tables": [
+          [
+            [
+              "Summary: Why Encapsulation Matters",
+              null,
+              null
+            ],
+            [
+              "Encapsulation keeps software modular by organizing data and\nbehavior into self-contained classes.\nIt improves maintainability by allowing internal implementations to\nchange without affecting external code.\nIt enhances security and integrity by preventing direct access to\ninternal state, reducing the risk of unintended side effects.\nIt supports black-box thinking — external parts of the system\ninteract only through well-defined interfaces.\nThis separation of concerns leads to clearer, more reliable, and\neasier-to-manage software.",
+              null,
+              null
+            ],
+            [
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 34/92"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 17,
+        "text": "What is Decomposition?\nDecomposition breaks down a whole into meaningful, manageable\nparts.\nAlternatively, it can describe assembling parts to form a coherent\nwhole.\nThis design principle supports problem solving by simplifying\ncomplexity.\nEach part can have its own responsibility, separate from the rest.\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 35/92",
+        "tables": [
+          [
+            [
+              "What is Decomposition?",
+              null,
+              null
+            ],
+            [
+              "Decomposition breaks down a whole into meaningful, manageable\nparts.\nAlternatively, it can describe assembling parts to form a coherent\nwhole.\nThis design principle supports problem solving by simplifying\ncomplexity.\nEach part can have its own responsibility, separate from the rest.",
+              null,
+              null
+            ],
+            [
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 35/92"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 18,
+        "text": "Real-World Examples of Decomposition\nExample: A car is composed of transmission, motor, wheels, seats,\netc.\nExample: A refrigerator includes compressor, freezer, shelves, drawers,\nand food.\nEach part contributes to the overall goal — e.g., preserving food.\nResponsibilities are divided among parts (e.g., freezing delegated to\nthe freezer).\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 36/92",
+        "tables": [
+          [
+            [
+              "Real-World Examples of Decomposition",
+              null,
+              null
+            ],
+            [
+              "Example: A car is composed of transmission, motor, wheels, seats,\netc.\nExample: A refrigerator includes compressor, freezer, shelves, drawers,\nand food.\nEach part contributes to the overall goal — e.g., preserving food.\nResponsibilities are divided among parts (e.g., freezing delegated to\nthe freezer).",
+              null,
+              null
+            ],
+            [
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 36/92"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 19,
+        "text": "Fixed vs. Dynamic Parts\nA whole may contain parts in fixed or changing quantities.\nFixed parts stay constant during the object’s lifetime (e.g., one\nengine per car).\nDynamic parts may be added or removed over time (e.g., food items\nin a fridge).\nExample: A car has one steering wheel (fixed), but a variable number\nof passengers (dynamic).\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 37/92",
+        "tables": [
+          [
+            [
+              "Fixed vs. Dynamic Parts",
+              null,
+              null
+            ],
+            [
+              "A whole may contain parts in fixed or changing quantities.\nFixed parts stay constant during the object’s lifetime (e.g., one\nengine per car).\nDynamic parts may be added or removed over time (e.g., food items\nin a fridge).\nExample: A car has one steering wheel (fixed), but a variable number\nof passengers (dynamic).",
+              null,
+              null
+            ],
+            [
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 37/92"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 20,
+        "text": "Nested Decomposition\nParts can also be wholes with their own subparts.\nExample: A refrigerator drawer contains fruit.\nExample: A car’s instrument panel contains a speedometer,\nodometer, and fuel gauge.\nEncapsulation allows these subparts to act as black boxes.\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 38/92",
+        "tables": [
+          [
+            [
+              "Nested Decomposition",
+              null,
+              null
+            ],
+            [
+              "Parts can also be wholes with their own subparts.\nExample: A refrigerator drawer contains fruit.\nExample: A car’s instrument panel contains a speedometer,\nodometer, and fuel gauge.\nEncapsulation allows these subparts to act as black boxes.",
+              null,
+              null
+            ],
+            [
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 38/92"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 21,
+        "text": "Lifetime Relationships Between Parts and Wholes\nSome parts share the same lifespan as their whole.\nExample: Refrigerator and freezer — the freezer is disposed with the\nfridge.\nOther parts may have independent lifetimes.\nExample: Car frame (long-lasting) vs. tires (replaceable).\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 39/92",
+        "tables": [
+          [
+            [
+              "Lifetime Relationships Between Parts and Wholes",
+              null,
+              null
+            ],
+            [
+              "Some parts share the same lifespan as their whole.\nExample: Refrigerator and freezer — the freezer is disposed with the\nfridge.\nOther parts may have independent lifetimes.\nExample: Car frame (long-lasting) vs. tires (replaceable).",
+              null,
+              null
+            ],
+            [
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 39/92"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 22,
+        "text": "Shared vs. Exclusive Parts\nParts can be shared among multiple wholes in some designs.\nExample: A person might be a spouse in one family and a parent in\nanother.\nSome parts are exclusive and cannot be shared.\nExample: A food item cannot be in both a refrigerator and an oven\nat once.\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 40/92",
+        "tables": [
+          [
+            [
+              "Shared vs. Exclusive Parts",
+              null,
+              null
+            ],
+            [
+              "Parts can be shared among multiple wholes in some designs.\nExample: A person might be a spouse in one family and a parent in\nanother.\nSome parts are exclusive and cannot be shared.\nExample: A food item cannot be in both a refrigerator and an oven\nat once.",
+              null,
+              null
+            ],
+            [
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 40/92"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 23,
+        "text": "Why Decomposition Matters\nDecomposition allows complex systems to be built from simpler,\nreusable parts.\nMakes responsibilities easier to isolate, understand, and implement.\nSupports flexibility in system design (fixed vs. dynamic, shared vs.\nexclusive).\nHelps organize software architectures for scalability and clarity.\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 41/92",
+        "tables": [
+          [
+            [
+              "Why Decomposition Matters",
+              null,
+              null
+            ],
+            [
+              "Decomposition allows complex systems to be built from simpler,\nreusable parts.\nMakes responsibilities easier to isolate, understand, and implement.\nSupports flexibility in system design (fixed vs. dynamic, shared vs.\nexclusive).\nHelps organize software architectures for scalability and clarity.",
+              null,
+              null
+            ],
+            [
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 41/92"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 24,
+        "text": "What is Generalization?\nGeneralization is a design principle for reducing redundancy in code.\nIt helps identify and extract common patterns from multiple places.\nAllows us to define shared behavior and structure once, and reuse it\nin many places.\nGeneralization applies at both the method and class level in\nobject-oriented design.\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 42/92",
+        "tables": [
+          [
+            [
+              "What is Generalization?",
+              null,
+              null
+            ],
+            [
+              "Generalization is a design principle for reducing redundancy in code.\nIt helps identify and extract common patterns from multiple places.\nAllows us to define shared behavior and structure once, and reuse it\nin many places.\nGeneralization applies at both the method and class level in\nobject-oriented design.",
+              null,
+              null
+            ],
+            [
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 42/92"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 25,
+        "text": "Generalization with Methods\nRepeated actions can be extracted into reusable methods.\nInstead of duplicating logic, define a method once and call it with\ndifferent arguments.\nCommon in algorithm design where the same logic applies to\ndifferent data sets.\nThis improves readability, reusability, and reduces errors.\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 43/92",
+        "tables": [
+          [
+            [
+              "Generalization with Methods",
+              null,
+              null
+            ],
+            [
+              "Repeated actions can be extracted into reusable methods.\nInstead of duplicating logic, define a method once and call it with\ndifferent arguments.\nCommon in algorithm design where the same logic applies to\ndifferent data sets.\nThis improves readability, reusability, and reduces errors.",
+              null,
+              null
+            ],
+            [
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 43/92"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 26,
+        "text": "Without Generalization: Repetitive Code\n1 public void createArrays() {\n2 int[] array1 = new int[3];\n3 for (int i = 0; i < array1.length; i++)\n4 array1[i] = i;\n5\n6 int[] array2 = new int[6];\n7 for (int i = 0; i < array2.length; i++)\n8 array2[i] = i;\n9 }\nThis version repeats logic for different array sizes.\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 44/92",
+        "tables": [
+          [
+            [
+              "Without Generalization: Repetitive Code",
+              null,
+              null
+            ],
+            [
+              "1 public void createArrays() {\n2 int[] array1 = new int[3];\n3 for (int i = 0; i < array1.length; i++)\n4 array1[i] = i;\n5\n6 int[] array2 = new int[6];\n7 for (int i = 0; i < array2.length; i++)\n8 array2[i] = i;\n9 }\nThis version repeats logic for different array sizes.",
+              null,
+              null
+            ],
+            [
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 44/92"
+            ]
+          ],
+          [
+            [
+              ""
+            ],
+            [
+              "1 public void createArrays() {"
+            ],
+            [
+              "2 int[] array1 = new int[3];"
+            ],
+            [
+              "3 for (int i = 0; i < array1.length; i++)"
+            ],
+            [
+              "4 array1[i] = i;"
+            ],
+            [
+              "5"
+            ],
+            [
+              "6 int[] array2 = new int[6];"
+            ],
+            [
+              "7 for (int i = 0; i < array2.length; i++)"
+            ],
+            [
+              "8 array2[i] = i;"
+            ],
+            [
+              "9 }"
+            ],
+            [
+              ""
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 27,
+        "text": "With Generalization: Reusable Method\n1 public void createArrays() {\n2 int[] array1 = initArray(3);\n3 int[] array2 = initArray(6);\n4 }\n5\n6 public int[] initArray(int n) {\n7 int[] arr = new int[n];\n8 for (int i = 0; i < n; i++)\n9 arr[i] = i;\n10 return arr;\n11 }\nThis version avoids duplication by generalizing the repeated logic into a\nhelper method.\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 45/92",
+        "tables": [
+          [
+            [
+              "With Generalization: Reusable Method",
+              null,
+              null
+            ],
+            [
+              "1 public void createArrays() {\n2 int[] array1 = initArray(3);\n3 int[] array2 = initArray(6);\n4 }\n5\n6 public int[] initArray(int n) {\n7 int[] arr = new int[n];\n8 for (int i = 0; i < n; i++)\n9 arr[i] = i;\n10 return arr;\n11 }\nThis version avoids duplication by generalizing the repeated logic into a\nhelper method.",
+              null,
+              null
+            ],
+            [
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 45/92"
+            ]
+          ],
+          [
+            [
+              ""
+            ],
+            [
+              "1 public void createArrays() {"
+            ],
+            [
+              "2 int[] array1 = initArray(3);"
+            ],
+            [
+              "3 int[] array2 = initArray(6);"
+            ],
+            [
+              "4 }"
+            ],
+            [
+              "5"
+            ],
+            [
+              "6 public int[] initArray(int n) {"
+            ],
+            [
+              "7 int[] arr = new int[n];"
+            ],
+            [
+              "8 for (int i = 0; i < n; i++)"
+            ],
+            [
+              "9 arr[i] = i;"
+            ],
+            [
+              "10 return arr;"
+            ],
+            [
+              "11 }"
+            ],
+            [
+              ""
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 28,
+        "text": "Generalization with Classes\nShared attributes and behaviors among classes can be factored into a\ncommon superclass.\nThis superclass provides a base set of features inherited by\nsubclasses.\nSubclasses can extend or override behaviors while inheriting shared\nfunctionality.\nSupports reuse, consistency, and flexibility in class design.\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 46/92",
+        "tables": [
+          [
+            [
+              "Generalization with Classes",
+              null,
+              null
+            ],
+            [
+              "Shared attributes and behaviors among classes can be factored into a\ncommon superclass.\nThis superclass provides a base set of features inherited by\nsubclasses.\nSubclasses can extend or override behaviors while inheriting shared\nfunctionality.\nSupports reuse, consistency, and flexibility in class design.",
+              null,
+              null
+            ],
+            [
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 46/92"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 29,
+        "text": "Generalization: Animal Example\nCommon features can be abstracted into a superclass (e.g., Animal).\nSubclasses like Dog and Cat inherit shared attributes and behaviors.\nThis avoids duplication and supports code reuse.\nAnimal\nlegs: int\ntail: boolean\nwalk()\nrun()\neat()\nDog Cat\nbreed: string color: string\nbark() meow()\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 47/92",
+        "tables": [
+          [
+            [
+              "Generalization: Animal Example",
+              null,
+              null
+            ],
+            [
+              "Common features can be abstracted into a superclass (e.g., Animal).\nSubclasses like Dog and Cat inherit shared attributes and behaviors.\nThis avoids duplication and supports code reuse.\nAnimal\nlegs: int\ntail: boolean\nwalk()\nrun()\neat()\nDog Cat\nbreed: string color: string\nbark() meow()",
+              null,
+              null
+            ],
+            [
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 47/92"
+            ]
+          ],
+          [
+            [
+              "Animal"
+            ],
+            [
+              "legs: int\ntail: boolean"
+            ],
+            [
+              "walk()\nrun()\neat()"
+            ]
+          ],
+          [
+            [
+              "Dog"
+            ],
+            [
+              "breed: string"
+            ],
+            [
+              "bark()"
+            ]
+          ],
+          [
+            [
+              "Cat"
+            ],
+            [
+              "color: string"
+            ],
+            [
+              "meow()"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 30,
+        "text": "Benefits of Class Generalization\nAvoids duplicated code by factoring shared features into one place.\nEnables consistent behavior and logic across related classes.\nAllows centralized updates: changes in the superclass apply to all\nsubclasses.\nMakes the system easier to extend — new subclasses inherit the\ncommon features automatically.\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 48/92",
+        "tables": [
+          [
+            [
+              "Benefits of Class Generalization",
+              null,
+              null
+            ],
+            [
+              "Avoids duplicated code by factoring shared features into one place.\nEnables consistent behavior and logic across related classes.\nAllows centralized updates: changes in the superclass apply to all\nsubclasses.\nMakes the system easier to extend — new subclasses inherit the\ncommon features automatically.",
+              null,
+              null
+            ],
+            [
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 48/92"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 31,
+        "text": "D.R.Y. Principle and Generalization\nD.R.Y. stands for \"Don’t Repeat Yourself\".\nGeneralization supports this by consolidating common code into\nshared structures.\nReduces maintenance effort — fewer places to modify when\nrequirements change.\nLeads to code that is more readable, reusable, and less error-prone.\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 49/92",
+        "tables": [
+          [
+            [
+              "D.R.Y. Principle and Generalization",
+              null,
+              null
+            ],
+            [
+              "D.R.Y. stands for \"Don’t Repeat Yourself\".\nGeneralization supports this by consolidating common code into\nshared structures.\nReduces maintenance effort — fewer places to modify when\nrequirements change.\nLeads to code that is more readable, reusable, and less error-prone.",
+              null,
+              null
+            ],
+            [
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 49/92"
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 32,
+        "text": "Summary: Why Generalization Matters\nHelps identify common patterns across methods and classes.\nReduces code duplication and promotes reuse.\nSimplifies updates and future enhancements.\nEnables more flexible, scalable, and maintainable system design.\nKey technique in building robust object-oriented software.\nSanarFawzi (SUE-SED) SoftwareDesignandModeling April1,2026 50/92",
+        "tables": [
+          [
+            [
+              "Summary: Why Generalization Matters",
+              null,
+              null
+            ],
+            [
+              "Helps identify common patterns across methods and classes.\nReduces code duplication and promotes reuse.\nSimplifies updates and future enhancements.\nEnables more flexible, scalable, and maintainable system design.\nKey technique in building robust object-oriented software.",
+              null,
+              null
+            ],
+            [
+              "SanarFawzi (SUE-SED)",
+              "SoftwareDesignandModeling",
+              "April1,2026 50/92"
+            ]
+          ]
+        ]
+      }
+    ]
+  },
+  "Interaction models": {
+    "name": "Interaction models",
+    "total_pages": 9,
+    "pages": [
+      {
+        "page_num": 1,
+        "text": "Interaction models\n30/10/2014 Chapter 5 System Modeling 14",
+        "tables": []
+      },
+      {
+        "page_num": 2,
+        "text": "Interaction models\n Modeling user interaction is important as it helps to\nidentify user requirements.\n Modeling system-to-system interaction highlights the\ncommunication problems that may arise.\n Modeling component interaction helps us understand if a\nproposed system structure is likely to deliver the required\nsystem performance and dependability.\n Use case diagrams and sequence diagrams may be\nused for interaction modeling.\n30/10/2014 Chapter 5 System Modeling 15",
+        "tables": []
+      },
+      {
+        "page_num": 3,
+        "text": "Use case modeling\n Use cases were developed originally to support\nrequirements elicitation and now incorporated into the\nUML.\n Each use case represents a discrete task that involves\nexternal interaction with a system.\n Actors in a use case may be people or other systems.\n Represented diagramatically to provide an overview of\nthe use case and in a more detailed textual form.\n30/10/2014 Chapter 5 System Modeling 16",
+        "tables": []
+      },
+      {
+        "page_num": 4,
+        "text": "Transfer-data use case\n A use case in the Mentcare system\n30/10/2014 Chapter 5 System Modeling 17",
+        "tables": []
+      },
+      {
+        "page_num": 5,
+        "text": "Tabular description of the ‘Transfer data’ use-\ncase\nMHC-PMS: Transfer data\nActors Medical receptionist, patient records system (PRS)\nDescription A receptionist may transfer data from the Mentcase\nsystem to a general patient record database that is\nmaintained by a health authority. The information\ntransferred may either be updated personal information\n(address, phone number, etc.) or a summary of the\npatient’s diagnosis and treatment.\nData Patient’s personal information, treatment summary\nStimulus User command issued by medical receptionist\nResponse Confirmation that PRS has been updated\nComments The receptionist must have appropriate security\npermissions to access the patient information and the\nPRS.\n30/10/2014 Chapter 5 System Modeling 18",
+        "tables": [
+          [
+            [
+              "MHC-PMS: Transfer data",
+              null
+            ],
+            [
+              "Actors",
+              "Medical receptionist, patient records system (PRS)"
+            ],
+            [
+              "Description",
+              "A receptionist may transfer data from the Mentcase\nsystem to a general patient record database that is\nmaintained by a health authority. The information\ntransferred may either be updated personal information\n(address, phone number, etc.) or a summary of the\npatient’s diagnosis and treatment."
+            ],
+            [
+              "Data",
+              "Patient’s personal information, treatment summary"
+            ],
+            [
+              "Stimulus",
+              "User command issued by medical receptionist"
+            ],
+            [
+              "Response",
+              "Confirmation that PRS has been updated"
+            ],
+            [
+              "Comments",
+              "The receptionist must have appropriate security\npermissions to access the patient information and the\nPRS."
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 6,
+        "text": "Use cases in the Mentcare system involving the\nrole ‘Medical Receptionist’\n30/10/2014 Chapter 5 System Modeling 19",
+        "tables": []
+      },
+      {
+        "page_num": 7,
+        "text": "Sequence diagrams\n Sequence diagrams are part of the UML and are used to\nmodel the interactions between the actors and the\nobjects within a system.\n A sequence diagram shows the sequence of interactions\nthat take place during a particular use case or use case\ninstance.\n The objects and actors involved are listed along the top\nof the diagram, with a dotted line drawn vertically from\nthese.\n Interactions between objects are indicated by annotated\narrows.\n30/10/2014 Chapter 5 System Modeling 20",
+        "tables": []
+      },
+      {
+        "page_num": 8,
+        "text": "Sequence diagram for View patient information\n30/10/2014 Chapter 5 System Modeling 21",
+        "tables": [
+          [
+            [
+              ""
+            ],
+            [
+              ""
+            ],
+            [
+              ""
+            ]
+          ],
+          [
+            [
+              ""
+            ],
+            [
+              ""
+            ]
+          ],
+          [
+            [
+              "",
+              ""
+            ]
+          ],
+          [
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 9,
+        "text": "Sequence\ndiagram for\nTransfer Data\n30/10/2014 Chapter 5 System Modeling 22",
+        "tables": [
+          [
+            [
+              null,
+              null,
+              "",
+              null
+            ],
+            [
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              null,
+              "",
+              "",
+              ""
+            ],
+            [
+              null,
+              null,
+              null,
+              ""
+            ],
+            [
+              null,
+              null,
+              "",
+              null
+            ]
+          ]
+        ]
+      }
+    ]
+  },
+  "Structural": {
+    "name": "Structural",
+    "total_pages": 12,
+    "pages": [
+      {
+        "page_num": 1,
+        "text": "Structural models\n30/10/2014 Chapter 5 System Modeling 23",
+        "tables": []
+      },
+      {
+        "page_num": 2,
+        "text": "Structural models\n Structural models of software display the organization of\na system in terms of the components that make up that\nsystem and their relationships.\n Structural models may be static models, which show the\nstructure of the system design, or dynamic models,\nwhich show the organization of the system when it is\nexecuting.\n You create structural models of a system when you are\ndiscussing and designing the system architecture.\n30/10/2014 Chapter 5 System Modeling 24",
+        "tables": []
+      },
+      {
+        "page_num": 3,
+        "text": "Class diagrams\n Class diagrams are used when developing an object-\noriented system model to show the classes in a system\nand the associations between these classes.\n An object class can be thought of as a general definition\nof one kind of system object.\n An association is a link between classes that indicates\nthat there is some relationship between these classes.\n When you are developing models during the early stages\nof the software engineering process, objects represent\nsomething in the real world, such as a patient, a\nprescription, doctor, etc.\n30/10/2014 Chapter 5 System Modeling 25",
+        "tables": []
+      },
+      {
+        "page_num": 4,
+        "text": "UML classes and association\n30/10/2014 Chapter 5 System Modeling 26",
+        "tables": []
+      },
+      {
+        "page_num": 5,
+        "text": "Classes and associations in the MHC-PMS\n30/10/2014 Chapter 5 System Modeling 27",
+        "tables": []
+      },
+      {
+        "page_num": 6,
+        "text": "The Consultation class\n30/10/2014 Chapter 5 System Modeling 28",
+        "tables": [
+          [
+            [
+              ""
+            ],
+            [
+              ""
+            ],
+            [
+              ""
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 7,
+        "text": "Generalization\n Generalization is an everyday technique that we use to\nmanage complexity.\n Rather than learn the detailed characteristics of every\nentity that we experience, we place these entities in\nmore general classes (animals, cars, houses, etc.) and\nlearn the characteristics of these classes.\n This allows us to infer that different members of these\nclasses have some common characteristics e.g.\nsquirrels and rats are rodents.\n30/10/2014 Chapter 5 System Modeling 29",
+        "tables": []
+      },
+      {
+        "page_num": 8,
+        "text": "Generalization\n In modeling systems, it is often useful to examine the classes in\na system to see if there is scope for generalization. If changes\nare proposed, then you do not have to look at all classes in the\nsystem to see if they are affected by the change.\n In object-oriented languages, such as Java, generalization is\nimplemented using the class inheritance mechanisms built into\nthe language.\n In a generalization, the attributes and operations associated with\nhigher-level classes are also associated with the lower-level\nclasses.\n The lower-level classes are subclasses inherit the attributes and\noperations from their superclasses. These lower-level classes\nthen add more specific attributes and operations.\n30/10/2014 Chapter 5 System Modeling 30",
+        "tables": []
+      },
+      {
+        "page_num": 9,
+        "text": "A generalization hierarchy\n30/10/2014 Chapter 5 System Modeling 31",
+        "tables": []
+      },
+      {
+        "page_num": 10,
+        "text": "A generalization hierarchy with added detail\n30/10/2014 Chapter 5 System Modeling 32",
+        "tables": [
+          [
+            [
+              ""
+            ],
+            [
+              ""
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 11,
+        "text": "Object class aggregation models\n An aggregation model shows how classes that are\ncollections are composed of other classes.\n Aggregation models are similar to the part-of relationship\nin semantic data models.\n30/10/2014 Chapter 5 System Modeling 33",
+        "tables": []
+      },
+      {
+        "page_num": 12,
+        "text": "The aggregation association\n30/10/2014 Chapter 5 System Modeling 34",
+        "tables": []
+      }
+    ]
+  },
+  "System Modelling01": {
+    "name": "System Modelling01",
+    "total_pages": 7,
+    "pages": [
+      {
+        "page_num": 1,
+        "text": "Chapter 5 – System Modeling\n30/10/2014 Chapter 5 System Modeling 1",
+        "tables": []
+      },
+      {
+        "page_num": 2,
+        "text": "Topics covered\n Context models\n Interaction models\n Structural models\n Behavioral models\n Model-driven engineering\n30/10/2014 Chapter 5 System Modeling 2",
+        "tables": []
+      },
+      {
+        "page_num": 3,
+        "text": "System modeling\n System modeling is the process of developing abstract\nmodels of a system, with each model presenting a\ndifferent view or perspective of that system.\n System modeling has now come to mean representing a\nsystem using some kind of graphical notation, which is\nnow almost always based on notations in the Unified\nModeling Language (UML).\n System modelling helps the analyst to understand the\nfunctionality of the system and models are used to\ncommunicate with customers.\n30/10/2014 Chapter 5 System Modeling 3",
+        "tables": []
+      },
+      {
+        "page_num": 4,
+        "text": "Existing and planned system models\n Models of the existing system are used during requirements\nengineering. They help clarify what the existing system does\nand can be used as a basis for discussing its strengths and\nweaknesses. These then lead to requirements for the new\nsystem.\n Models of the new system are used during requirements\nengineering to help explain the proposed requirements to\nother system stakeholders. Engineers use these models to\ndiscuss design proposals and to document the system for\nimplementation.\n In a model-driven engineering process, it is possible to\ngenerate a complete or partial system implementation from\nthe system model.\n30/10/2014 Chapter 5 System Modeling 4",
+        "tables": []
+      },
+      {
+        "page_num": 5,
+        "text": "System perspectives\n An external perspective, where you model the context or\nenvironment of the system.\n An interaction perspective, where you model the\ninteractions between a system and its environment, or\nbetween the components of a system.\n A structural perspective, where you model the\norganization of a system or the structure of the data that\nis processed by the system.\n A behavioral perspective, where you model the dynamic\nbehavior of the system and how it responds to events.\n30/10/2014 Chapter 5 System Modeling 5",
+        "tables": []
+      },
+      {
+        "page_num": 6,
+        "text": "UML diagram types\n Activity diagrams, which show the activities involved in a\nprocess or in data processing .\n Use case diagrams, which show the interactions\nbetween a system and its environment.\n Sequence diagrams, which show interactions between\nactors and the system and between system components.\n Class diagrams, which show the object classes in the\nsystem and the associations between these classes.\n State diagrams, which show how the system reacts to\ninternal and external events.\n30/10/2014 Chapter 5 System Modeling 6",
+        "tables": []
+      },
+      {
+        "page_num": 7,
+        "text": "Use of graphical models\n As a means of facilitating discussion about an existing or\nproposed system\n Incomplete and incorrect models are OK as their role is to\nsupport discussion.\n As a way of documenting an existing system\n Models should be an accurate representation of the system but\nneed not be complete.\n As a detailed system description that can be used to\ngenerate a system implementation\n Models have to be both correct and complete.\n30/10/2014 Chapter 5 System Modeling 7",
+        "tables": []
+      }
+    ]
+  },
+  "Use cases": {
+    "name": "Use cases",
+    "total_pages": 6,
+    "pages": [
+      {
+        "page_num": 1,
+        "text": "Mentcare Modeling Overview\nUse cases, sequence diagrams, and class diagrams for key receptionist workflows.",
+        "tables": []
+      },
+      {
+        "page_num": 2,
+        "text": "Part 1: Use Cases (Mentcare)\nOverview of the core receptionist workflows and the data exchanged with the Mentcare\nsystem.",
+        "tables": [
+          [
+            [
+              ""
+            ],
+            [
+              "Part 1: Use Cases (Mentcare)\nOverview of the core receptionist workflows and the data exchanged with the Mentcare\nsystem."
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 3,
+        "text": "MHC-PMS: Transfer data\nMovement of data between the Mentcare and an external health authority database.\nField Description\nActors Medical receptionist, patient records system (PRS)\nA receptionist may transfer data from the Mentcase system to a health\nDescription\nauthority databse.\nPatient’s personal information (address, phone number, etc.) or a\nData\nsummary of the patient’s diagnosis and treatment.\nStimulus User command issued by medical receptionist.\nResponse Confirmation that PRS has been updated.\nThe receptionist must have appropriate security permissions to access\nComments\nthe patient information and the PRS.",
+        "tables": [
+          [
+            [
+              "Field",
+              "Description"
+            ],
+            [
+              "Actors",
+              "Medical receptionist, patient records system (PRS)"
+            ],
+            [
+              "Description",
+              "A receptionist may transfer data from the Mentcase system to a health\nauthority databse."
+            ],
+            [
+              "Data",
+              "Patient’s personal information (address, phone number, etc.) or a\nsummary of the patient’s diagnosis and treatment."
+            ],
+            [
+              "Stimulus",
+              "User command issued by medical receptionist."
+            ],
+            [
+              "Response",
+              "Confirmation that PRS has been updated."
+            ],
+            [
+              "Comments",
+              "The receptionist must have appropriate security permissions to access\nthe patient information and the PRS."
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 4,
+        "text": "MHC-PMS: Register patient\nThis activity focuses on the initial entry of a patient into the system boundary.\nField Description\nActors Medical receptionist, Mentcare System\nThe receptionist creates a new digital record for a patient who has not\nDescription\npreviously been treated within the system.\nData Full name, date of birth, contact details, and next of kin information.\nStimulus Receptionist selects \"New Patient\" command.\nResponse A unique patient identifier is generated and the record is saved.\nVerification of identity (e.g., government ID) is typically required before\nComments\nregistration.",
+        "tables": [
+          [
+            [
+              "Field",
+              "Description"
+            ],
+            [
+              "Actors",
+              "Medical receptionist, Mentcare System"
+            ],
+            [
+              "Description",
+              "The receptionist creates a new digital record for a patient who has not\npreviously been treated within the system."
+            ],
+            [
+              "Data",
+              "Full name, date of birth, contact details, and next of kin information."
+            ],
+            [
+              "Stimulus",
+              "Receptionist selects \"New Patient\" command."
+            ],
+            [
+              "Response",
+              "A unique patient identifier is generated and the record is saved."
+            ],
+            [
+              "Comments",
+              "Verification of identity (e.g., government ID) is typically required before\nregistration."
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 5,
+        "text": "MHC-PMS: Unregister patient\nThis activity removes or archives a patient from the active system.\nField Description\nActors Medical receptionist, Mentcare System\nA patient is removed from the active system roster, typically due to\nDescription\ndischarge, death, or transfer to another authority.\nData Patient ID and reason for unregistration.\nStimulus Receptionist selects \"Unregister\" command for a specific record.\nSystem confirms record status has been updated to 'Inactive' or\nResponse\n'Archived'.\nMedical records are rarely deleted entirely; they are usually moved to a\nComments\nlong-term archive for legal compliance.",
+        "tables": [
+          [
+            [
+              "Field",
+              "Description"
+            ],
+            [
+              "Actors",
+              "Medical receptionist, Mentcare System"
+            ],
+            [
+              "Description",
+              "A patient is removed from the active system roster, typically due to\ndischarge, death, or transfer to another authority."
+            ],
+            [
+              "Data",
+              "Patient ID and reason for unregistration."
+            ],
+            [
+              "Stimulus",
+              "Receptionist selects \"Unregister\" command for a specific record."
+            ],
+            [
+              "Response",
+              "System confirms record status has been updated to 'Inactive' or\n'Archived'."
+            ],
+            [
+              "Comments",
+              "Medical records are rarely deleted entirely; they are usually moved to a\nlong-term archive for legal compliance."
+            ]
+          ]
+        ]
+      },
+      {
+        "page_num": 6,
+        "text": "MHC-PMS: View patient info\nThis use case involves retrieving existing data for review.\nField Description\nActors Medical receptionist, Mentcare System\nThe receptionist retrieves the current medical and personal history of a\nDescription\nspecific patient.\nData Patient identifier used to query the database.\nStimulus User search command using patient ID or name.\nResponse The requested patient record is displayed on the screen.\nAccess logs are usually maintained to track who viewed sensitive\nComments\npatient data.",
+        "tables": [
+          [
+            [
+              ""
+            ],
+            [
+              "MHC-PMS: View patient info\nThis use case involves retrieving existing data for review.\nField Description\nActors Medical receptionist, Mentcare System\nThe receptionist retrieves the current medical and personal history of a\nDescription\nspecific patient.\nData Patient identifier used to query the database.\nStimulus User search command using patient ID or name.\nResponse The requested patient record is displayed on the screen.\nAccess logs are usually maintained to track who viewed sensitive\nComments\npatient data."
+            ]
+          ],
+          [
+            [
+              "Field",
+              "Description"
+            ],
+            [
+              "Actors",
+              "Medical receptionist, Mentcare System"
+            ],
+            [
+              "Description",
+              "The receptionist retrieves the current medical and personal history of a\nspecific patient."
+            ],
+            [
+              "Data",
+              "Patient identifier used to query the database."
+            ],
+            [
+              "Stimulus",
+              "User search command using patient ID or name."
+            ],
+            [
+              "Response",
+              "The requested patient record is displayed on the screen."
+            ],
+            [
+              "Comments",
+              "Access logs are usually maintained to track who viewed sensitive\npatient data."
+            ]
+          ]
+        ]
+      }
+    ]
+  },
+  "samples": {
+    "name": "samples",
+    "total_pages": 4,
+    "pages": [
+      {
+        "page_num": 1,
+        "text": "Sample 1: Internship Matching Portal (University ↔ Companies)\nScenario\nYour department wants a portal where companies post internship openings and students apply.\nCoordinators need to approve postings, track applications, and export lists for reporting. Students\nwant to filter by city, domain, and required skills.\nTransition (what we extract first)\nActors: Student, Company HR, Department Coordinator\nGoal: publish opportunities → apply → review → decide\nKey constraints: approval workflow + searchable catalogue\nUser stories (examples)\n As a Company, I can create an internship post and submit it for approval.\n As a Coordinator, I can approve/reject posts and see applicants.\n As a Student, I can search/filter internships and apply with a CV.\nTasks (Epic: Internship Posts & Applications)\n1. Define data model (Company, InternshipPost, SkillTag, Application, Status)\no Done: ERD + field list + statuses agreed (Draft/Submitted/Approved/Rejected/Closed).\n2. Create Coordinator approval flow\no Done: company posts land in “Pending”; coordinator can approve/reject with reason.\n3. Build Internship listing page (public for students)\no Done: list shows title/company/city/type; loads fast; pagination.\n4. Add filters + search (city, domain, skills, keyword)\no Done: filters combine correctly; URL keeps query params.\n5. Internship detail page\no Done: full description, requirements, deadline, “Apply” button.\n6. Student application form (CV upload + notes)\no Done: validates file types/size; stores safely; application gets status “Submitted”.\n7. Company dashboard (see their posts + applicants)\no Done: company can view applicant list and each applicant profile.\n8. Coordinator reporting export (CSV/Excel)\no Done: export includes post + applicants + statuses.\n9. Notifications (email or in-app)\no Done: notify company on approval; notify student on status changes.\n10. Testing & acceptance\n Done: test cases for approval, filtering, applying, permissions.",
+        "tables": []
+      },
+      {
+        "page_num": 2,
+        "text": "Sample 2: Clinic Appointment Scheduling (with reminders)\nScenario\nA clinic receives too many calls. Patients should book appointments online, choose a doctor, and\nreceive reminders. Receptionists should approve reschedules and handle cancellations.\nTransition\nActors: Patient, Receptionist, Doctor\nGoal: book → confirm → remind → handle cancellations\nRisk areas: double booking, time slots, reminders\nUser stories\n As a Patient, I can see available slots and book one.\n As a Receptionist, I can approve reschedule requests.\n As a Doctor, I can see my daily schedule.\nTasks (Epic: Appointment Booking)\n1. Model scheduling rules (doctors, working hours, slot length, holidays)\no Done: rules documented + stored in DB.\n2. Availability API (return free slots, prevent overlaps)\no Done: no double booking under concurrent requests.\n3. Patient booking UI (choose doctor/date/slot)\no Done: booking confirmation screen + error handling.\n4. Appointment confirmation workflow\no Done: status = Pending → Confirmed; receptionist can confirm automatically/manual.\n5. Reschedule/cancel flow\no Done: patient can request; receptionist approves; audit log kept.\n6. Doctor schedule view (day/week)\no Done: shows patient name (or anonymized), reason, time.\n7. Reminder system (24h + 2h before)\no Done: reminders sent; failures logged; opt-out supported.\n8. Permissions & privacy\no Done: role-based access; no patient data leakage.\n9. QA scenarios (double booking, cancellation after reminder, no-show)\no Done: test checklist + fixes.",
+        "tables": []
+      },
+      {
+        "page_num": 3,
+        "text": "Sample 3: Lab Equipment Booking + Inventory (University labs)\nScenario\nLabs have limited equipment (oscilloscopes, microcontroller kits). Students want to reserve\nequipment for time slots. Technicians want to track working/out-of-order units and prevent bookings\nfor broken items.\nTransition\nActors: Student, Lab Technician, Department Admin\nGoal: reserve → pick up/return → track condition\nImportant: inventory status drives booking availability\nUser stories\n As a Student, I can reserve equipment for a time slot.\n As a Technician, I can mark units as out-of-order.\n As an Admin, I can see usage statistics.\nTasks (Epic: Inventory-aware Booking)\n1. Define inventory structure (EquipmentType vs Unit/Serial)\no Done: supports multiple units per equipment type.\n2. Booking rules (max hours, conflict checks, late return rules)\no Done: constraints documented + enforced.\n3. Search & browse equipment\no Done: filter by lab, category, availability.\n4. Booking flow UI (select item → time slot → confirm)\no Done: confirmation + booking record created.\n5. Technician dashboard (check-out/check-in)\no Done: changes status (Reserved → CheckedOut → Returned).\n6. Maintenance workflow\no Done: technician can mark unit OutOfOrder; unit removed from availability.\n7. Notifications (pickup time, overdue alerts)\no Done: alerts trigger on time conditions.\n8. Usage reports (most used items, downtime, demand peaks)\no Done: exportable stats.\n9. Testing (conflicts, out-of-order unit booked, overdue)\no Done: key edge cases covered.",
+        "tables": []
+      },
+      {
+        "page_num": 4,
+        "text": "Sample 4: Event Registration + QR Check-in\nScenario\nYour university hosts seminars. People register online, get a QR code, and sta(cid:431) scan it at the entrance\nto check attendance. Organizers want attendance stats.\nTransition\nActors: Attendee, Organizer, Check-in Sta(cid:431)\nGoal: register → generate ticket → scan → report\nRisks: duplicate QR use, o(cid:431)line scanning\nUser stories\n As an Attendee, I can register and receive a QR ticket.\n As Sta(cid:431), I can scan QR and mark attendance.\n As an Organizer, I can see attendance stats.\nTasks (Epic: Registration & Check-in)\n1. Registration form + validation\no Done: captures name/email/phone; prevents duplicates by email.\n2. QR generation (unique token per registration)\no Done: QR encodes secure token; cannot be guessed easily.\n3. Email delivery (QR + event info)\no Done: retries + logs failures.\n4. Check-in scanning page/app\no Done: scan → show name/status → mark checked-in.\n5. Prevent double check-in\no Done: second scan shows “Already checked in” + time.\n6. O(cid:431)line mode (optional) (cache list + sync later)\no Done: works without internet; sync resolves conflicts.\n7. Organizer dashboard (registered vs attended)\no Done: live counts + list export.\n8. Security & privacy\no Done: sta(cid:431) only sees minimal info; organizer access controlled.\n9. QA (lost email, duplicate registration, QR screenshot reuse)\no Done: test scenarios written + verified.",
+        "tables": []
+      }
+    ]
+  }
+}
